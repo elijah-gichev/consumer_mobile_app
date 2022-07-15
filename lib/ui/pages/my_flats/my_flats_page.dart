@@ -1,4 +1,6 @@
 import 'package:bavito_mobile_app/data/entity/client.dart';
+import 'package:bavito_mobile_app/data/repository/flats_repository.dart';
+import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/ui/models/flats.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:bavito_mobile_app/ui/pages/my_flats/my_flats_list.dart';
@@ -41,11 +43,29 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
         ),
       ),
       body: widget.isFlatsExist
-          ? FutureBuilder<List<Flats>>(
-              builder: (context, snapshot) => MyFlatsList(
-                offers: snapshot.data!,
+          ? Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: FutureBuilder<List<Flats>>(
+                future: getIt<FlatsRepository>().getFlats(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return const Center(
+                      child: Text(
+                        'Что-то пошло не так!',
+                      ),
+                    );
+                  }
+                  return MyFlatsList(
+                    offers: snapshot.data!,
+                  );
+                },
               ),
-            )
+          )
           : Container(
               child: const Center(
                 child: Text(
