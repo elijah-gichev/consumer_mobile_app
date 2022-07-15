@@ -1,5 +1,5 @@
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
-import 'package:bavito_mobile_app/ui/models/client.dart';
+import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:bavito_mobile_app/ui/widgets/offers_list.dart';

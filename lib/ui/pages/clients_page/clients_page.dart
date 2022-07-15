@@ -1,5 +1,5 @@
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
-import 'package:bavito_mobile_app/ui/models/client.dart';
+import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/clients_list.dart';
 import 'package:bavito_mobile_app/ui/widgets/search_field.dart';
 import 'package:flutter/material.dart';
