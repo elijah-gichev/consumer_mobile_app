@@ -13,6 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
+import '../ui/models/client.dart' as _i7;
 import '../ui/pages/client_page/client_page.dart' as _i3;
 import '../ui/pages/clients_page/clients_page.dart' as _i2;
 import '../ui/pages/home_page/home_page.dart' as _i1;
@@ -33,8 +34,10 @@ class AppRouter extends _i5.RootStackRouter {
           routeData: routeData, child: const _i2.ClientsPage());
     },
     ClientPageRoute.name: (routeData) {
+      final args = routeData.argsAs<ClientPageRouteArgs>();
       return _i5.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.ClientPage());
+          routeData: routeData,
+          child: _i3.ClientPage(args.client, key: args.key));
     },
     OffersPageRoute.name: (routeData) {
       return _i5.MaterialPageX<dynamic>(
@@ -76,10 +79,26 @@ class ClientsPageRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ClientPage]
-class ClientPageRoute extends _i5.PageRouteInfo<void> {
-  const ClientPageRoute() : super(ClientPageRoute.name, path: 'clientPage');
+class ClientPageRoute extends _i5.PageRouteInfo<ClientPageRouteArgs> {
+  ClientPageRoute({required _i7.Client client, _i6.Key? key})
+      : super(ClientPageRoute.name,
+            path: 'clientPage',
+            args: ClientPageRouteArgs(client: client, key: key));
 
   static const String name = 'ClientPageRoute';
+}
+
+class ClientPageRouteArgs {
+  const ClientPageRouteArgs({required this.client, this.key});
+
+  final _i7.Client client;
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'ClientPageRouteArgs{client: $client, key: $key}';
+  }
 }
 
 /// generated route for

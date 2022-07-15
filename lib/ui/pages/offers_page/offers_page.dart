@@ -3,8 +3,9 @@ import 'package:bavito_mobile_app/ui/models/client.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:bavito_mobile_app/ui/widgets/offers_list.dart';
-import 'package:bavito_mobile_app/ui/widgets/request_card.dart';
+import 'package:bavito_mobile_app/ui/pages/offers_page/widgets/request_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OffersPage extends StatefulWidget {
   const OffersPage({Key? key}) : super(key: key);
@@ -57,21 +58,39 @@ class _OffersPageState extends State<OffersPage> {
       appBar: CustomAppBar(
         title: '${_request.action} ${_request.object}',
       ),
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(0),
-                children: [
-                  RequestCard(
-                    request: _request,
-                    client: _client,
+            RequestCard(
+              request: _request,
+              client: _client,
+            ),
+            Row(
+              children: [
+                const Text(
+                  'Предложения',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
                   ),
-                  OffersList(offers: _offers),
-                ],
-              ),
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Добавить',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: OffersList(offers: _offers),
             ),
           ],
         ),

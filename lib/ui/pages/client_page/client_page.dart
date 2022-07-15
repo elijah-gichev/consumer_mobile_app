@@ -6,14 +6,14 @@ import 'package:bavito_mobile_app/ui/pages/client_page/widgets/requests_list.dar
 import 'package:flutter/material.dart';
 
 class ClientPage extends StatefulWidget {
-  const ClientPage({Key? key}) : super(key: key);
+  final Client client;
+  const ClientPage(this.client, {Key? key}) : super(key: key);
 
   @override
   State<ClientPage> createState() => _ClientPageState();
 }
 
 class _ClientPageState extends State<ClientPage> {
-  final Client _client = Client.blank();
   final List<Request> _requests = [
     Request(
       location: 'пос. Янтарный, пос. Камышеваха',
@@ -51,7 +51,7 @@ class _ClientPageState extends State<ClientPage> {
               child: ListView(
                 padding: const EdgeInsets.all(0),
                 children: [
-                  ClientCard(client: _client),
+                  ClientCard(client: widget.client),
                   RequestsList(requests: _requests),
                 ],
               ),
