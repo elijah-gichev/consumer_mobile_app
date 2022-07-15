@@ -27,7 +27,11 @@ class _PhotoCardsState extends State<PhotoCards> {
                 currentPage = index + 1;
               });
             },
-            children: widget.imageUrls.map((imageUrl) => Image.asset(imageUrl)).toList(),
+            children: widget.imageUrls
+                .map(
+                  (imageUrl) => Image.asset(imageUrl, fit: BoxFit.fill),
+                )
+                .toList(),
           ),
           Align(
             alignment: Alignment.bottomCenter,

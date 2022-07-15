@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
+import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
@@ -19,32 +21,6 @@ class OffersPage extends StatefulWidget {
 class _OffersPageState extends State<OffersPage> {
   late final Client _client;
   late final Request _request;
-  final List<Offer> _offers = [
-    Offer(
-        object: 'Дом',
-        square: '100',
-        floor: '2',
-        address: 'Кировский р-н, Очаковская, 39',
-        price: '20 млн',
-        date: '14.05.2022',
-        image: 'https://klike.net/uploads/posts/2020-01/1579858815_2.jpg'),
-    Offer(
-        object: 'Дом',
-        square: '100',
-        floor: '2',
-        address: 'Кировский р-н, Очаковская, 39',
-        price: '20 млн',
-        date: '14.05.2022',
-        image: 'https://klike.net/uploads/posts/2020-01/1579858815_2.jpg'),
-    Offer(
-        object: 'Дом',
-        square: '100',
-        floor: '2',
-        address: 'Кировский р-н, Очаковская, 39',
-        price: '20 млн',
-        date: '14.05.2022',
-        image: 'https://klike.net/uploads/posts/2020-01/1579858815_2.jpg'),
-  ];
 
   @override
   void initState() {
@@ -93,8 +69,31 @@ class _OffersPageState extends State<OffersPage> {
                 ),
               ],
             ),
-            Expanded(
-              child: OffersList(offers: _offers),
+            FutureBuilder<List<Offer>>(
+              future: getIt<OffersRepository>().getOffers(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text(
+                      'Что-то пошло не так!',
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  return Expanded(
+                    child: OffersList(
+                      offers: snapshot.data!,
+                    ),
+                  );
+                }
+
+                return const SizedBox();
+              },
             ),
           ],
         ),

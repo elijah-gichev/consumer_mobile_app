@@ -36,8 +36,8 @@ class ListTileOffer extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 image: DecorationImage(
-                  image: Image.network(offer.image).image,
-                  fit: BoxFit.fitWidth,
+                  image: Image.asset(offer.image).image,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
