@@ -4,8 +4,14 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showback;
   final String title;
+  final bool isCenterTitle;
 
-  const CustomAppBar({Key? key, required this.title, this.showback = false}) : super(key: key);
+  const CustomAppBar({
+    Key? key,
+    required this.title,
+    this.showback = false,
+    this.isCenterTitle = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.w400,
         ),
       ),
-      centerTitle: true,
+      centerTitle: isCenterTitle,
       leading: showback
           ? IconButton(
               onPressed: () {

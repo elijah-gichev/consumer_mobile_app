@@ -5,6 +5,8 @@ import 'package:bavito_mobile_app/ui/widgets/search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../delcaration_page/widgets/photo_cards.dart';
+
 class ClientsPage extends StatefulWidget {
   const ClientsPage({Key? key}) : super(key: key);
 
@@ -13,6 +15,11 @@ class ClientsPage extends StatefulWidget {
 }
 
 class _ClientsPageState extends State<ClientsPage> {
+  final List<String> urlList  = [
+    "assets/images/house1.jpg",
+    "assets/images/house2.jpg",
+    "assets/images/house3.jpg",
+  ];
   final List<Client> _clients = [
     Client(
       surname: 'Григорьев',
@@ -36,7 +43,8 @@ class _ClientsPageState extends State<ClientsPage> {
     if (query.isNotEmpty) {
       _filteredClients = _clients.where(
         (Client client) {
-          String fullName = '${client.surname} ${client.name} ${client.patronymic}';
+          String fullName =
+              '${client.surname} ${client.name} ${client.patronymic}';
           return fullName.toLowerCase().contains(query);
         },
       ).toList();
@@ -57,29 +65,25 @@ class _ClientsPageState extends State<ClientsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const CustomAppBar(title: 'Клиенты'),
+      appBar: const CustomAppBar(
+        title: 'Главная',
+        isCenterTitle: false,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+            padding: const EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 15,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  child: SearchField(controller: _searchController),
+                PhotoCards(
+                  imageUrls: urlList,
                 ),
-                const SizedBox(height: 20),
-                const Text(
-                  'КЛИЕНТЫ',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 15),
-                ClientsList(clients: _filteredClients),
               ],
             ),
           ),
