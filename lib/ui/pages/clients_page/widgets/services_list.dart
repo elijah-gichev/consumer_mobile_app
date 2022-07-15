@@ -14,8 +14,8 @@ class ServicesList extends StatelessWidget {
         children: [
           Container(
             constraints: BoxConstraints(
-              maxHeight: 50.h,
-              maxWidth: 40.w,
+              minHeight: 50.h,
+              minWidth: 40.w,
             ),
             decoration: const BoxDecoration(
               color: Colors.blueGrey,
