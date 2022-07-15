@@ -8,20 +8,97 @@ class ServicesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
+      child: Row(
         children: [
+          const SizedBox(
+            width: 8,
+          ),
           Container(
-            constraints: BoxConstraints(
-              minHeight: 50.h,
-              minWidth: 40.w,
+            height: 130.h,
+            width: 80.w,
+            margin: const EdgeInsets.only(
+              left: 8,
+            ), 
+            decoration: const BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  8,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 130.h,
+            width: 80.w,
+            margin: const EdgeInsets.only(
+              left: 8,
             ),
             decoration: const BoxDecoration(
               color: Colors.blueGrey,
               borderRadius: BorderRadius.all(
                 Radius.circular(
-                  10,
+                  8,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 130.h,
+            width: 80.w,
+            margin: const EdgeInsets.only(
+              left: 8,
+            ),
+            decoration: const BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  8,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 130.h,
+            width: 80.w,
+            margin: const EdgeInsets.only(
+              left: 8,
+            ),
+            decoration: const BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  8,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 130.h,
+            width: 80.w,
+            margin: const EdgeInsets.only(
+              left: 8,
+            ),
+            decoration: const BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  8,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 130.h,
+            width: 80.w,
+            margin: const EdgeInsets.only(
+              left: 8,
+            ),
+            decoration: const BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  8,
                 ),
               ),
             ),

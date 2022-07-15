@@ -1,6 +1,7 @@
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/clients_list.dart';
+import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/services_list.dart';
 import 'package:bavito_mobile_app/ui/widgets/search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +16,7 @@ class ClientsPage extends StatefulWidget {
 }
 
 class _ClientsPageState extends State<ClientsPage> {
-  final List<String> urlList  = [
+  final List<String> urlList = [
     "assets/images/house1.jpg",
     "assets/images/house2.jpg",
     "assets/images/house3.jpg",
@@ -69,24 +70,15 @@ class _ClientsPageState extends State<ClientsPage> {
         title: 'Главная',
         isCenterTitle: false,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 5,
-              horizontal: 15,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                PhotoCards(
-                  imageUrls: urlList,
-                ),
-              ],
-            ),
+          PhotoCards(
+            imageUrls: urlList,
           ),
+          SizedBox(
+            height: 11.h,
+          ),
+          const ServicesList(),
         ],
       ),
     );
