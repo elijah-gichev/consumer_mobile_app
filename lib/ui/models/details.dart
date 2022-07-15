@@ -1,30 +1,58 @@
 class Details {
   final String city;
-  final double costFrom;
-  final double costTo;
-  final Plan plan;
+  final double costMin;
+  final double costMax;
+  final Layout layout;
   final double ceilingHeight;
   final bool isRenovated;
   final int floorMin;
   final int floorMax;
   final View windowView;
-  final HouseType houseType;
+  final List<HouseType> houseType;
+  final List<Parking> parking;
 
   Details({
     required this.city,
-    required this.costFrom,
-    required this.costTo,
-    required this.plan,
+    required this.costMin,
+    required this.costMax,
+    required this.layout,
     required this.ceilingHeight,
     required this.isRenovated,
     required this.floorMin,
     required this.floorMax,
     required this.windowView,
     required this.houseType,
+    required this.parking,
   });
+
+  Details copyWith({
+    city,
+    costMin,
+    costMax,
+    layout,
+    ceilingHeight,
+    isRenovated,
+    floorMin,
+    floorMax,
+    windowView,
+    houseType,
+    parking,
+  }) =>
+      Details(
+          city: city ?? this.city,
+          costMin: costMin ?? this.costMin,
+          costMax: costMax ?? this.costMax,
+          layout: layout ?? this.layout,
+          ceilingHeight: ceilingHeight ?? this.ceilingHeight,
+          isRenovated: isRenovated ?? this.isRenovated,
+          floorMin: floorMin ?? this.floorMin,
+          floorMax: floorMax ?? this.floorMax,
+          windowView: windowView ?? this.windowView,
+          houseType: houseType ?? this.houseType,
+          parking: parking ?? this.parking);
 }
 
-enum Plan {
+enum Layout {
   studio,
   oneRoomed,
   twoRoomed,
@@ -33,9 +61,39 @@ enum Plan {
   penthouse,
 }
 
+extension LayoutToString on Layout {
+  String get string {
+    switch (this) {
+      case Layout.studio:
+        return 'Студия';
+      case Layout.oneRoomed:
+        return '1-комнатная';
+      case Layout.twoRoomed:
+        return '2-комнатная';
+      case Layout.threeRoomed:
+        return '3-комнатная';
+      case Layout.fourRoomed:
+        return '4-комнтная';
+      case Layout.penthouse:
+        return 'Пентхаус';
+    }
+  }
+}
+
 enum View {
   outside,
   window,
+}
+
+extension ViewToString on View {
+  String get string {
+    switch (this) {
+      case View.outside:
+        return 'На улицу';
+      case View.window:
+        return 'Во двор';
+    }
+  }
 }
 
 enum HouseType {
@@ -44,8 +102,32 @@ enum HouseType {
   block,
 }
 
+extension HouseTypeToString on HouseType {
+  String get string {
+    switch (this) {
+      case HouseType.brick:
+        return 'Кирпичный';
+      case HouseType.monolithic:
+        return 'Монолитный';
+      case HouseType.block:
+        return 'Блочный';
+    }
+  }
+}
+
 enum Parking {
   ground,
   underground,
   //parallel :3
+}
+
+extension ParkingToString on Parking {
+  String get string {
+    switch (this) {
+      case Parking.ground:
+        return 'Наземная';
+      case Parking.underground:
+        return 'Подземная';
+    }
+  }
 }

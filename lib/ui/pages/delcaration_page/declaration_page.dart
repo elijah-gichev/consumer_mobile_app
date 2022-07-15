@@ -42,13 +42,13 @@ class DeclarationPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 600.h,
-            child: ModelViewer(
-              src: 'assets/images/model.glb',
-              backgroundColor: Colors.blueAccent,
-            ),
-          ),
+          // SizedBox(
+          //   height: 600.h,
+          //   child: ModelViewer(
+          //     src: 'assets/images/model.glb',
+          //     backgroundColor: Colors.blueAccent,
+          //   ),
+          // ),
         ],
       ),
     );

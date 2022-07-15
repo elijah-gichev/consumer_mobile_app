@@ -32,8 +32,8 @@ class DetailsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: tileHeight ?? 60.h,
       child: ListTile(
+        onTap: onPressed,
         horizontalTitleGap: 0.0,
         contentPadding: EdgeInsets.zero,
         dense: true,

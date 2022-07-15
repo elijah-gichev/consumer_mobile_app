@@ -1,13 +1,39 @@
 import 'package:bavito_mobile_app/ui/models/details.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/widgets/category.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/widgets/details_tile.dart';
+import 'package:bavito_mobile_app/ui/pages/details_page/widgets/price_selection_page.dart';
 import 'package:bavito_mobile_app/utils/constants/app_colors.dart';
 import 'package:bavito_mobile_app/utils/constants/icons_reference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key}) : super(key: key);
+
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  late final Details details;
+
+  @override
+  void initState() {
+    details = Details(
+      city: 'Краснодар',
+      costMin: 2.5,
+      costMax: 4.5,
+      layout: Layout.studio,
+      ceilingHeight: 2.5,
+      isRenovated: true,
+      floorMin: 4,
+      floorMax: 7,
+      windowView: View.outside,
+      houseType: [HouseType.monolithic, HouseType.block, HouseType.brick],
+      parking: [Parking.ground],
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +41,9 @@ class DetailsPage extends StatelessWidget {
       DetailsTile(
         title: 'Купить квартиру',
         iconAsset: AssetIconsReference.flat,
-        onPressed: () {},
+        onPressed: () {
+          print('купили');
+        },
       ),
       separator,
       DetailsTile(
@@ -24,14 +52,14 @@ class DetailsPage extends StatelessWidget {
         iconAsset: AssetIconsReference.location,
         onPressed: () {},
       ),
-      SizedBox(
-        height: 13.h,
-      ),
       separator,
       DetailsTile(
-        title: '2,5 млн - 4 млн',
+        title: '${details.costMin} млн - ${details.costMax} млн',
         iconAsset: AssetIconsReference.rouble,
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context, builder: (_) => const PriceSelectionPage());
+        },
       ),
       separator,
     ];
@@ -41,21 +69,21 @@ class DetailsPage extends StatelessWidget {
         title: 'Планировка',
         iconAsset: AssetIconsReference.layout,
         onPressed: () {},
-        trailing: 'Смежная', //TODO: extension написать для enum
+        trailing: details.layout.string,
       ),
       separator,
       DetailsTile(
         title: 'Высота потолков',
         iconAsset: AssetIconsReference.ceiling,
         onPressed: () {},
-        trailing: 'От 2,5 м',
+        trailing: 'От ${details.ceilingHeight} м',
       ),
       separator,
       DetailsTile(
         title: 'Ремонт',
         iconAsset: AssetIconsReference.renovation,
         onPressed: () {},
-        trailing: 'Без ремонта',
+        trailing: details.isRenovated ? 'С ремонтом' : 'Без ремонта',
       ),
       separator,
     ];
@@ -65,14 +93,14 @@ class DetailsPage extends StatelessWidget {
         title: 'Этаж',
         iconAsset: AssetIconsReference.ceiling,
         onPressed: () {},
-        trailing: 'От 3 до 7',
+        trailing: 'От ${details.floorMin} до ${details.floorMax}',
       ),
       separator,
       DetailsTile(
         title: 'Вид из окна',
         iconAsset: AssetIconsReference.sunset,
         onPressed: () {},
-        trailing: 'Во двор',
+        trailing: details.windowView.string,
       ),
       separator,
       DetailsTile(
@@ -80,7 +108,7 @@ class DetailsPage extends StatelessWidget {
         tileHeight: 78.h,
         iconAsset: AssetIconsReference.bricks,
         onPressed: () {},
-        trailing: 'Кирпичный,\nмонолитный, блочный',
+        trailing: details.houseType.map((e) => e.string).join(', '),
         trailingStyle: TextStyle(
           fontSize: 13.sp,
         ),
@@ -90,21 +118,12 @@ class DetailsPage extends StatelessWidget {
         title: 'Парковка',
         iconAsset: AssetIconsReference.parking,
         onPressed: () {},
-        trailing: 'Наземная, подземная',
+        trailing: details.parking.map((e) => e.string).join(', '),
         trailingStyle: TextStyle(
           fontSize: 13.sp,
         ),
       ),
       separator,
-      DetailsTile(
-        title: 'Парковка',
-        iconAsset: AssetIconsReference.parking,
-        onPressed: () {},
-        trailing: 'Наземная, подземная',
-        trailingStyle: TextStyle(
-          fontSize: 13.sp,
-        ),
-      ),
     ];
 
     return SizedBox(
@@ -156,18 +175,7 @@ class DetailsPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    final Details details = Details(
-                      city: 'Краснодар',
-                      costFrom: 2500000,
-                      costTo: 4500000,
-                      plan: Plan.oneRoomed,
-                      ceilingHeight: 2.5,
-                      isRenovated: true,
-                      floorMin: 4,
-                      floorMax: 7,
-                      windowView: View.outside,
-                      houseType: HouseType.monolithic,
-                    );
+                    print(details);
                   },
                   child: Text(
                     'Готово',
