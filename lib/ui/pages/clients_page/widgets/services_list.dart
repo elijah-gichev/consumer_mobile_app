@@ -6,26 +6,24 @@ class ServicesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return ListView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: const [
-          SizedBox(width: 8),
-          StoryItem(),
-          SizedBox(width: 8),
-          StoryItem(),
-          SizedBox(width: 8),
-          StoryItem(),
-          SizedBox(width: 8),
-          StoryItem(),
-          SizedBox(width: 8),
-          StoryItem(),
-          SizedBox(width: 8),
-          StoryItem(),
-          SizedBox(width: 8),
-          StoryItem(),
-        ],
-      ),
+      children: const [
+        SizedBox(width: 8),
+        StoryItem(),
+        SizedBox(width: 8),
+        StoryItem(),
+        SizedBox(width: 8),
+        StoryItem(),
+        SizedBox(width: 8),
+        StoryItem(),
+        SizedBox(width: 8),
+        StoryItem(),
+        SizedBox(width: 8),
+        StoryItem(),
+        SizedBox(width: 8),
+        StoryItem(),
+      ],
     );
   }
 }
