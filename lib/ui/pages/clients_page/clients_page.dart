@@ -1,11 +1,9 @@
 import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
-import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
-import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/clients_list.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/offer_item.dart';
-import 'package:bavito_mobile_app/ui/widgets/search_field.dart';
+import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/services_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -68,28 +66,29 @@ class _ClientsPageState extends State<ClientsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: const CustomAppBar(
-      //   title: 'Главная',
-      //   isCenterTitle: false,
-      // ),
       body: SafeArea(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              PhotoCards(
-                imageUrls: urlList,
-              ),
-              SizedBox(height: 15.h),
-              const Padding(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            PhotoCards(
+              imageUrls: urlList,
+            ),
+            SizedBox(height: 15.h),
+            SizedBox(
+              height: 110.h,
+              child: const ServicesList(),
+            ),
+            SizedBox(height: 15.h),
+            const Expanded(
+              child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 15,
                 ),
-                child: Expanded(child: Offers()),
+                child: Offers(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

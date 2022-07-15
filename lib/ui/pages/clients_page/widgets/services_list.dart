@@ -8,25 +8,43 @@ class ServicesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        children: [
-          Container(
-            constraints: BoxConstraints(
-              maxHeight: 50.h,
-              maxWidth: 40.w,
-            ),
-            decoration: const BoxDecoration(
-              color: Colors.blueGrey,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  10,
-                ),
-              ),
-            ),
-          ),
+      child: Row(
+        children: const [
+          SizedBox(width: 8),
+          StoryItem(),
+          SizedBox(width: 8),
+          StoryItem(),
+          SizedBox(width: 8),
+          StoryItem(),
+          SizedBox(width: 8),
+          StoryItem(),
+          SizedBox(width: 8),
+          StoryItem(),
+          SizedBox(width: 8),
+          StoryItem(),
+          SizedBox(width: 8),
+          StoryItem(),
         ],
+      ),
+    );
+  }
+}
+
+class StoryItem extends StatelessWidget {
+  const StoryItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 130.h,
+      width: 80.w,
+      decoration: const BoxDecoration(
+        color: Colors.blueGrey,
+        borderRadius: BorderRadius.all(
+          Radius.circular(
+            8,
+          ),
+        ),
       ),
     );
   }
