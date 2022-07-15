@@ -1,6 +1,7 @@
 import 'package:bavito_mobile_app/ui/models/request.dart';
-import 'package:bavito_mobile_app/ui/widgets/list_tile_request.dart';
+import 'package:bavito_mobile_app/ui/common/list_tile_request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RequestsList extends StatelessWidget {
   final List<Request> requests;
@@ -10,7 +11,7 @@ class RequestsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: Column(
         children: <Widget>[
           Row(
@@ -19,7 +20,7 @@ class RequestsList extends StatelessWidget {
               const Text(
                 'Запросы',
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -28,7 +29,7 @@ class RequestsList extends StatelessWidget {
                 child: const Text(
                   'Добавить',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 15,
                     color: Colors.blue,
                   ),
                 ),
@@ -44,8 +45,11 @@ class RequestsList extends StatelessWidget {
   List<Widget> _buildList() {
     List<Widget> widgetList = [];
     for (Request request in requests) {
-      widgetList.add(ListTileRequest(request: request));
-      widgetList.add(const SizedBox(height: 10));
+      widgetList.add(ListTileRequest(
+        request: request,
+        onTap: () {},
+      ));
+      widgetList.add(SizedBox(height: 10.h));
     }
     return widgetList;
   }

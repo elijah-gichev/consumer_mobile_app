@@ -1,9 +1,8 @@
-import 'package:bavito_mobile_app/services/client_service.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/models/client.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
-import 'package:bavito_mobile_app/ui/widgets/client_card.dart';
-import 'package:bavito_mobile_app/ui/widgets/requests_list.dart';
+import 'package:bavito_mobile_app/ui/pages/client_page/widgets/client_card.dart';
+import 'package:bavito_mobile_app/ui/pages/client_page/widgets/requests_list.dart';
 import 'package:flutter/material.dart';
 
 class ClientPage extends StatefulWidget {
@@ -43,11 +42,11 @@ class _ClientPageState extends State<ClientPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
+      appBar: const CustomAppBar(title: 'Клиент'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const CustomAppBar(buttonLabel: 'Клиенты', title: 'Клиент'),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(0),

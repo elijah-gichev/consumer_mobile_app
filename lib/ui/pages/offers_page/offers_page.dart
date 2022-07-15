@@ -54,14 +54,13 @@ class _OffersPageState extends State<OffersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
+      appBar: CustomAppBar(
+        title: '${_request.action} ${_request.object}',
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CustomAppBar(
-              buttonLabel: 'Клиент',
-              title: '${_request.action} ${_request.object}',
-            ),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(0),

@@ -1,6 +1,7 @@
 import 'package:bavito_mobile_app/ui/common/profile_image.dart';
 import 'package:bavito_mobile_app/ui/models/client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ClientCard extends StatelessWidget {
   final Client client;
@@ -17,14 +18,13 @@ class ClientCard extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           ProfileImage(
-            height: 100,
-            width: 100,
-            initials:
-                '${client.name.substring(0, 1)}${client.surname.substring(0, 1)}',
+            height: 100.r,
+            width: 100.r,
+            initials: '${client.name.substring(0, 1)}${client.surname.substring(0, 1)}',
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           Text(
             '${client.name} ${client.patronymic} ${client.surname.substring(0, 1)}.',
             style: const TextStyle(
@@ -32,7 +32,7 @@ class ClientCard extends StatelessWidget {
               fontSize: 25,
             ),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           Text(
             client.phone,
             style: const TextStyle(
@@ -40,7 +40,7 @@ class ClientCard extends StatelessWidget {
               fontSize: 15,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
         ],
       ),
     );

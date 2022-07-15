@@ -1,26 +1,22 @@
-import 'package:bavito_mobile_app/services/client_service.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
-import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
-
-import 'package:auto_route/auto_route.dart';
 
 class ListTileRequest extends StatelessWidget {
   final Request request;
+  final VoidCallback onTap;
 
   const ListTileRequest({
     Key? key,
     required this.request,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        context.router.push(const OffersPageRoute());
-      },
+      onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Colors.white,
@@ -51,7 +47,7 @@ class ListTileRequest extends StatelessWidget {
                   Text(
                     '${request.action} ${request.object}',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 13,
                       color: Colors.grey,
                     ),
                   ),
@@ -64,7 +60,7 @@ class ListTileRequest extends StatelessWidget {
                       Expanded(
                         child: Text(
                           request.location,
-                          style: const TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 15),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
@@ -81,7 +77,7 @@ class ListTileRequest extends StatelessWidget {
                   ),
                   Text(
                     '${request.minPrice} ₽ - ${request.maxPrice} ₽',
-                    style: const TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 15),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),

@@ -14,19 +14,19 @@ class SearchField extends StatelessWidget {
       ),
       controller: controller,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            width: 0,
-            style: BorderStyle.none,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              width: 0,
+              style: BorderStyle.none,
+            ),
           ),
-        ),
-        filled: true,
-        labelText: 'Найти',
-        labelStyle: const TextStyle(color: Colors.grey),
-        prefixIcon: const Icon(Icons.search),
-        suffixIcon: const Icon(Icons.mic),
-      ),
+          filled: true,
+          labelText: 'Найти',
+          labelStyle: const TextStyle(color: Colors.grey),
+          prefixIcon: const Icon(Icons.search),
+          suffixIcon: const Icon(Icons.mic),
+          contentPadding: const EdgeInsets.all(0)),
     );
   }
 }
