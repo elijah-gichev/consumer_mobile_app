@@ -2,6 +2,7 @@
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
 import 'package:auto_route/auto_route.dart';
+import 'package:bavito_mobile_app/ui/pages/auth/screens/login_screen.dart';
 import 'package:bavito_mobile_app/ui/pages/client_page/client_page.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/clients_page.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/declaration_page.dart';
@@ -13,7 +14,6 @@ import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
   routes: <AutoRoute>[
     AutoRoute(
       path: 'homePage',
-      initial: true,
       page: HomePage,
       children: [
         AutoRoute(
@@ -29,6 +29,11 @@ import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
           page: OffersPage,
         ),
       ],
+    ),
+    AutoRoute(
+      initial: true,
+      path: 'loginPage',
+      page: LoginScreen,
     ),
     AutoRoute(
       path: 'declarationPage',
