@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bavito_mobile_app/ui/models/client.dart';
 import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
@@ -17,10 +18,10 @@ class _HomePageState extends State<HomePage> {
         return false;
       },
       child: AutoTabsRouter.tabBar(
-        routes: const [
-          ClientsPageRoute(),
-          ClientPageRoute(),
-          OffersPageRoute(),
+        routes: [
+          const ClientsPageRoute(),
+          ClientPageRoute(client: Client.blank()),
+          const OffersPageRoute(),
         ],
         builder: (context, child, animation) {
           return Scaffold(

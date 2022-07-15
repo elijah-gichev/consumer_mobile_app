@@ -2,6 +2,7 @@ import 'package:bavito_mobile_app/ui/common/profile_image.dart';
 import 'package:bavito_mobile_app/ui/models/client.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RequestCard extends StatelessWidget {
   final Request request;
@@ -17,7 +18,6 @@ class RequestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         color: Colors.white,
@@ -32,7 +32,7 @@ class RequestCard extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   request.location,
-                  style: const TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 15),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
@@ -40,7 +40,7 @@ class RequestCard extends StatelessWidget {
                 Text(
                   '${request.minPrice} ₽ - ${request.maxPrice} ₽',
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -50,15 +50,14 @@ class RequestCard extends StatelessWidget {
                 Row(
                   children: [
                     ProfileImage(
-                      height: 30,
-                      width: 30,
-                      initials:
-                          '${client.name.substring(0, 1)}${client.surname.substring(0, 1)}',
+                      height: 25.r,
+                      width: 25.r,
+                      initials: '${client.name.substring(0, 1)}${client.surname.substring(0, 1)}',
                     ),
                     const SizedBox(width: 10),
                     Text(
                       '${client.name} ${client.patronymic} ${client.surname.substring(0, 1)}.',
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 12),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),

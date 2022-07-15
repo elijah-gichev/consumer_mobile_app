@@ -65,7 +65,6 @@ class _ClientsPageState extends State<ClientsPage> {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
@@ -80,10 +79,7 @@ class _ClientsPageState extends State<ClientsPage> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                SizedBox(
-                  height: 500.h,
-                  child: ClientsList(clients: _filteredClients),
-                ),
+                ClientsList(clients: _filteredClients),
               ],
             ),
           ),
