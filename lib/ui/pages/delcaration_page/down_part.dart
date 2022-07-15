@@ -60,13 +60,15 @@ class DownPart extends StatelessWidget {
           ),
           const Text(
             "График стоимости квартиры",
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 18,
+            ),
           ),
           SfCartesianChart(
             primaryXAxis: CategoryAxis(),
             // Chart title
             title: ChartTitle(text: 'Half yearly sales analysis'),
-            // Enable legend
-            legend: Legend(isVisible: true),
             // Enable tooltip
             tooltipBehavior: TooltipBehavior(enable: true),
             series: <ChartSeries<_SalesData, String>>[
