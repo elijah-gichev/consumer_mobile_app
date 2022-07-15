@@ -8,5 +8,6 @@ abstract class AppColors {
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color darkBlue = Color.fromRGBO(8, 26, 92, 1);
   static const Color grey = Color.fromRGBO(126, 126, 126, 1);
-
+  static const Color lightGrey = Color.fromRGBO(60, 60, 67, 0.6);
+  static const Color separatorGrey = Color.fromRGBO(198, 198, 200, 1);
 }

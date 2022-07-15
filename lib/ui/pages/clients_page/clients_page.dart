@@ -3,7 +3,6 @@ import 'package:bavito_mobile_app/ui/models/client.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/clients_list.dart';
 import 'package:bavito_mobile_app/ui/widgets/search_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ClientsPage extends StatefulWidget {
   const ClientsPage({Key? key}) : super(key: key);
@@ -36,7 +35,8 @@ class _ClientsPageState extends State<ClientsPage> {
     if (query.isNotEmpty) {
       _filteredClients = _clients.where(
         (Client client) {
-          String fullName = '${client.surname} ${client.name} ${client.patronymic}';
+          String fullName =
+              '${client.surname} ${client.name} ${client.patronymic}';
           return fullName.toLowerCase().contains(query);
         },
       ).toList();
