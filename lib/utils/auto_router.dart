@@ -51,10 +51,6 @@ import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
       page: HousePage,
     ),
     AutoRoute(
-      path: 'videoPage',
-      page: VideoPage,
-    ),
-    AutoRoute(
       path: 'flatsPage',
       page: FlatsPage,
     ),
