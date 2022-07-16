@@ -1,12 +1,7 @@
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
-import 'package:bavito_mobile_app/ui/pages/delcaration_page/down_part.dart';
-import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/photo_cards.dart';
-import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/video.dart';
+import 'package:bavito_mobile_app/ui/models/flats.dart';
+import 'package:bavito_mobile_app/ui/pages/details_page/details_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:video_player/video_player.dart';
-
-import '../../models/flats.dart';
 
 class DeclarationPage extends StatelessWidget {
   final imageUrls = [
@@ -36,29 +31,34 @@ class DeclarationPage extends StatelessWidget {
         ),
         showback: true,
       ),
-      body: ListView(
+      body: Column(
         children: [
-          SizedBox(
-            height: 280.h,
-            child: PhotoCards(
-              imageUrls: imageUrls,
+          TextButton(
+            onPressed: () {
+              // showModalBottomSheet(
+              //   isScrollControlled: true,
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //   ),
+              //   context: context,
+              //   builder: (_) => const DetailsPage(),
+              // );
+            },
+            child: const Text(
+              'Добавить',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.blue,
+              ),
             ),
           ),
-          SizedBox(
-            height: 16.h,
-          ),
-          DownPart(
-            description: "Бла-бла-бла",
-          ),
-          flat.isDone
-              ? ListView(
-                  shrinkWrap: true,
-                  children: const [
-                    Text("Стадия строительства"),
-                    Video(),
-                  ],
-                )
-              : Container(),
+          // SizedBox(
+          //   height: 600.h,
+          //   child: ModelViewer(
+          //     src: 'assets/images/model.glb',
+          //     backgroundColor: Colors.blueAccent,
+          //   ),
+          // ),
         ],
       ),
     );
