@@ -1,6 +1,4 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/ui/models/client.dart';
-import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
 class ClientsList extends StatelessWidget {

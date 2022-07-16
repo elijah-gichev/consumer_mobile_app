@@ -1,11 +1,14 @@
 import 'package:bavito_mobile_app/ui/models/details.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/widgets/category.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/widgets/details_tile.dart';
-import 'package:bavito_mobile_app/ui/pages/details_page/widgets/price_selection_page.dart';
+import 'package:bavito_mobile_app/ui/pages/details_page/widgets/wrappers/selection_bottom_sheet_wrapper.dart';
+import 'package:bavito_mobile_app/ui/pages/details_page/widgets/wrappers/string_paser.dart';
 import 'package:bavito_mobile_app/utils/constants/app_colors.dart';
 import 'package:bavito_mobile_app/utils/constants/icons_reference.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  late final Details details;
+  late Details details;
 
   @override
   void initState() {
@@ -24,7 +27,8 @@ class _DetailsPageState extends State<DetailsPage> {
       costMin: 2.5,
       costMax: 4.5,
       layout: Layout.studio,
-      ceilingHeight: 2.5,
+      ceilingHeightMin: 2.5,
+      ceilingHeightMax: -4.5,
       isRenovated: true,
       floorMin: 4,
       floorMax: 7,
@@ -35,6 +39,170 @@ class _DetailsPageState extends State<DetailsPage> {
     super.initState();
   }
 
+  String get _parseCost => StringParser.parseSelectedNumbers(
+      suffix: 'млн', valueMin: details.costMin, valueMax: details.costMax);
+
+  String get _parseCeilingHeight => StringParser.parseSelectedNumbers(
+      suffix: 'м',
+      valueMin: details.ceilingHeightMin,
+      valueMax: details.ceilingHeightMax);
+
+  String get _parseFloors => StringParser.parseSelectedNumbers(
+      suffix: '', valueMin: details.floorMin, valueMax: details.floorMax);
+
+  Future _showCupertinoLayoutSelection() async {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext context) => Container(
+              height: 216.h,
+              padding: const EdgeInsets.only(top: 6.0),
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              color: CupertinoColors.systemBackground.resolveFrom(context),
+              child: SafeArea(
+                top: false,
+                child: CupertinoPicker(
+                  magnification: 1.22,
+                  squeeze: 1.2,
+                  useMagnifier: true,
+                  itemExtent: 27,
+                  // This is called when selected item is changed.
+                  onSelectedItemChanged: (int selectedItem) {
+                    setState(() {
+                      details = details.copyWith(
+                        layout: Layout.values[selectedItem],
+                      );
+                    });
+                  },
+                  children:
+                      List<Widget>.generate(Layout.values.length, (int index) {
+                    return Center(
+                      child: Text(
+                        Layout.values[index].string,
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ));
+  }
+
+  Future _showCupertinoPriceSelection() async {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) =>
+          const SelectionBottomSheetWrapper(title: 'Цена', suffixText: '₽'),
+    ).then((value) {
+      setState(() {
+        details = details.copyWith(
+          costMin: double.tryParse((value[0] as String)) ?? 0.0,
+          costMax: double.tryParse((value[1] as String)) ?? 0.0,
+        );
+      });
+    });
+  }
+
+  Future _showCupertinoCeilingHeightSelection() async {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) => const SelectionBottomSheetWrapper(
+          title: 'Высота потолков', suffixText: 'м'),
+    ).then((value) {
+      setState(() {
+        details = details.copyWith(
+          ceilingHeightMin: double.tryParse((value[0] as String)) ?? 0.0,
+          ceilingHeightMax: double.tryParse((value[1] as String)) ?? 0.0,
+        );
+      });
+    });
+  }
+
+  Future _showCupertinoFloorSelection() async {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) =>
+          const SelectionBottomSheetWrapper(title: 'Этажи', suffixText: 'э'),
+    ).then((value) {
+      setState(() {
+        details = details.copyWith(
+          floorMin: int.tryParse((value[0] as String)) ?? 0,
+          floorMax: int.tryParse((value[1] as String)) ?? 0,
+        );
+      });
+    });
+  }
+
+  void _showHouseTypeSelection() async {
+    await showModalBottomSheet(
+      isScrollControlled: true, // required for min/max child size
+      context: context,
+      builder: (_) {
+        return MultiSelectBottomSheet(
+          cancelText: Text(
+            'Отмена',
+            style: TextStyle(
+              fontSize: 14.sp,
+            ),
+          ),
+          confirmText: Text(
+            'ОК',
+            style: TextStyle(
+              fontSize: 14.sp,
+            ),
+          ),
+          items: HouseType.values
+              .map((HouseType e) => MultiSelectItem(e, e.string))
+              .toList(),
+          initialValue: details.houseType,
+          onConfirm: (List<HouseType> values) {
+            setState(() {
+              details = details.copyWith(
+                houseType: values,
+              );
+            });
+          },
+          maxChildSize: 0.8,
+        );
+      },
+    );
+  }
+
+  void _showParkingSelection() async {
+    await showModalBottomSheet(
+      isScrollControlled: true, // required for min/max child size
+      context: context,
+      builder: (_) {
+        return MultiSelectBottomSheet<Parking>(
+          cancelText: Text(
+            'Отмена',
+            style: TextStyle(
+              fontSize: 14.sp,
+            ),
+          ),
+          confirmText: Text(
+            'ОК',
+            style: TextStyle(
+              fontSize: 14.sp,
+            ),
+          ),
+          items: Parking.values
+              .map((Parking e) => MultiSelectItem(e, e.string))
+              .toList(),
+          initialValue: details.parking,
+          onConfirm: (List<Parking> values) {
+            setState(() {
+              details = details.copyWith(
+                parking: values,
+              );
+            });
+          },
+          maxChildSize: 0.8,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> _main = [
@@ -42,6 +210,7 @@ class _DetailsPageState extends State<DetailsPage> {
         title: 'Купить квартиру',
         iconAsset: AssetIconsReference.flat,
         onPressed: () {
+          //TODO: функционал
           print('купили');
         },
       ),
@@ -50,15 +219,16 @@ class _DetailsPageState extends State<DetailsPage> {
         title: 'Ростов-на-Дону',
         subtitle: 'Кировский, Ленинский, Пролетарский',
         iconAsset: AssetIconsReference.location,
-        onPressed: () {},
+        onPressed: () {
+          //TODO: функционал
+        },
       ),
       separator,
       DetailsTile(
-        title: '${details.costMin} млн - ${details.costMax} млн',
+        title: _parseCost,
         iconAsset: AssetIconsReference.rouble,
         onPressed: () {
-          showModalBottomSheet(
-              context: context, builder: (_) => const PriceSelectionPage());
+          _showCupertinoPriceSelection();
         },
       ),
       separator,
@@ -68,21 +238,31 @@ class _DetailsPageState extends State<DetailsPage> {
       DetailsTile(
         title: 'Планировка',
         iconAsset: AssetIconsReference.layout,
-        onPressed: () {},
+        onPressed: () {
+          _showCupertinoLayoutSelection();
+        },
         trailing: details.layout.string,
       ),
       separator,
       DetailsTile(
         title: 'Высота потолков',
         iconAsset: AssetIconsReference.ceiling,
-        onPressed: () {},
-        trailing: 'От ${details.ceilingHeight} м',
+        onPressed: () {
+          _showCupertinoCeilingHeightSelection();
+        },
+        trailing: _parseCeilingHeight,
       ),
       separator,
       DetailsTile(
         title: 'Ремонт',
         iconAsset: AssetIconsReference.renovation,
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            details = details.copyWith(
+              isRenovated: !details.isRenovated,
+            );
+          });
+        },
         trailing: details.isRenovated ? 'С ремонтом' : 'Без ремонта',
       ),
       separator,
@@ -92,14 +272,24 @@ class _DetailsPageState extends State<DetailsPage> {
       DetailsTile(
         title: 'Этаж',
         iconAsset: AssetIconsReference.ceiling,
-        onPressed: () {},
-        trailing: 'От ${details.floorMin} до ${details.floorMax}',
+        onPressed: () {
+          _showCupertinoFloorSelection();
+        },
+        trailing: _parseFloors,
       ),
       separator,
       DetailsTile(
         title: 'Вид из окна',
         iconAsset: AssetIconsReference.sunset,
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            details = details.copyWith(
+              windowView: details.windowView == View.window
+                  ? View.outside
+                  : View.window,
+            );
+          });
+        },
         trailing: details.windowView.string,
       ),
       separator,
@@ -107,7 +297,9 @@ class _DetailsPageState extends State<DetailsPage> {
         title: 'Тип дома',
         tileHeight: 78.h,
         iconAsset: AssetIconsReference.bricks,
-        onPressed: () {},
+        onPressed: () {
+          _showHouseTypeSelection();
+        },
         trailing: details.houseType.map((e) => e.string).join(', '),
         trailingStyle: TextStyle(
           fontSize: 13.sp,
@@ -117,7 +309,9 @@ class _DetailsPageState extends State<DetailsPage> {
       DetailsTile(
         title: 'Парковка',
         iconAsset: AssetIconsReference.parking,
-        onPressed: () {},
+        onPressed: () {
+          _showParkingSelection();
+        },
         trailing: details.parking.map((e) => e.string).join(', '),
         trailingStyle: TextStyle(
           fontSize: 13.sp,

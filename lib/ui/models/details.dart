@@ -3,7 +3,8 @@ class Details {
   final double costMin;
   final double costMax;
   final Layout layout;
-  final double ceilingHeight;
+  final double ceilingHeightMin;
+  final double ceilingHeightMax;
   final bool isRenovated;
   final int floorMin;
   final int floorMax;
@@ -16,7 +17,8 @@ class Details {
     required this.costMin,
     required this.costMax,
     required this.layout,
-    required this.ceilingHeight,
+    required this.ceilingHeightMin,
+    required this.ceilingHeightMax,
     required this.isRenovated,
     required this.floorMin,
     required this.floorMax,
@@ -30,7 +32,8 @@ class Details {
     costMin,
     costMax,
     layout,
-    ceilingHeight,
+    ceilingHeightMin,
+    ceilingHeightMax,
     isRenovated,
     floorMin,
     floorMax,
@@ -43,7 +46,8 @@ class Details {
           costMin: costMin ?? this.costMin,
           costMax: costMax ?? this.costMax,
           layout: layout ?? this.layout,
-          ceilingHeight: ceilingHeight ?? this.ceilingHeight,
+          ceilingHeightMin: ceilingHeightMin ?? this.ceilingHeightMin,
+          ceilingHeightMax: ceilingHeightMax ?? this.ceilingHeightMax,
           isRenovated: isRenovated ?? this.isRenovated,
           floorMin: floorMin ?? this.floorMin,
           floorMax: floorMax ?? this.floorMax,
@@ -73,7 +77,7 @@ extension LayoutToString on Layout {
       case Layout.threeRoomed:
         return '3-комнатная';
       case Layout.fourRoomed:
-        return '4-комнтная';
+        return '4-комнатная';
       case Layout.penthouse:
         return 'Пентхаус';
     }

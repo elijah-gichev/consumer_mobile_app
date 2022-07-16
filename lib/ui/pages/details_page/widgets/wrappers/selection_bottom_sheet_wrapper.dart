@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PriceSelectionPage extends StatefulWidget {
-  const PriceSelectionPage({Key? key}) : super(key: key);
+class SelectionBottomSheetWrapper extends StatefulWidget {
+  final String suffixText;
+  final String title;
+
+  const SelectionBottomSheetWrapper({
+    required this.title,
+    required this.suffixText,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<PriceSelectionPage> createState() => _PriceSelectionPageState();
+  State<SelectionBottomSheetWrapper> createState() =>
+      _SelectionBottomSheetWrapper();
 }
 
-class _PriceSelectionPageState extends State<PriceSelectionPage> {
-  late TextEditingController textEditingControllerFrom;
-  late TextEditingController textEditingControllerTo;
+class _SelectionBottomSheetWrapper extends State<SelectionBottomSheetWrapper> {
+  late final TextEditingController textEditingControllerFrom;
+  late final TextEditingController textEditingControllerTo;
   late bool isTyped;
 
   @override
@@ -36,7 +44,7 @@ class _PriceSelectionPageState extends State<PriceSelectionPage> {
                 },
                 icon: const Icon(Icons.highlight_remove_outlined),
               ),
-              const Text('Цена'),
+              Text(widget.title),
               TextButton(
                 onPressed: isTyped
                     ? () {
@@ -62,11 +70,16 @@ class _PriceSelectionPageState extends State<PriceSelectionPage> {
           children: [
             Expanded(
               child: TextFormField(
+                onChanged: (String val) {
+                  setState(() {
+                    isTyped = val.isNotEmpty;
+                  });
+                },
                 controller: textEditingControllerFrom,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'от',
-                  suffixText: '₽',
-                  border: OutlineInputBorder(
+                  suffixText: widget.suffixText,
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -74,11 +87,16 @@ class _PriceSelectionPageState extends State<PriceSelectionPage> {
             ),
             Expanded(
               child: TextFormField(
+                onChanged: (String val) {
+                  setState(() {
+                    isTyped = val.isNotEmpty;
+                  });
+                },
                 controller: textEditingControllerTo,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'до',
-                  suffixText: '₽',
-                  border: OutlineInputBorder(
+                  suffixText: widget.suffixText,
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -88,18 +106,14 @@ class _PriceSelectionPageState extends State<PriceSelectionPage> {
         ),
         ElevatedButton(
           onPressed: () {
-            //TODO: передать параметры
+            Navigator.of(context).pop(<String>[
+              textEditingControllerFrom.text,
+              textEditingControllerTo.text
+            ]);
           },
           child: const Text('Применить'),
         ),
       ],
     );
-  }
-
-  @override
-  void dispose() {
-    textEditingControllerTo.dispose();
-    textEditingControllerFrom.dispose();
-    super.dispose();
   }
 }
