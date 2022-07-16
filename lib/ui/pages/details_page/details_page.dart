@@ -195,32 +195,32 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _main = [
-        DetailsTile(
-          title: 'Купить квартиру',
-          iconAsset: AssetIconsReference.flat,
-          onPressed: () {
-            //TODO: функционал
-            print('купили');
-          },
-        ),
-        separator,
-        DetailsTile(
-          title: 'Ростов-на-Дону',
-          subtitle: 'Кировский, Ленинский, Пролетарский',
-          iconAsset: AssetIconsReference.location,
-          onPressed: () {
-            //TODO: функционал
-          },
-        ),
-        separator,
-        DetailsTile(
-          title: _parseCost,
-          iconAsset: AssetIconsReference.rouble,
-          onPressed: () {
-            _showCupertinoPriceSelection();
-          },
-        ),
-        separator,
+      DetailsTile(
+        title: 'Купить квартиру',
+        iconAsset: AssetIconsReference.flat,
+        onPressed: () {
+          //TODO: функционал
+          print('купили');
+        },
+      ),
+      separator,
+      DetailsTile(
+        title: 'Краснодар',
+        subtitle: 'Центральный, Фестивальный, Плодородный',
+        iconAsset: AssetIconsReference.location,
+        onPressed: () {
+          //TODO: функционал
+        },
+      ),
+      separator,
+      DetailsTile(
+        title: _parseCost,
+        iconAsset: AssetIconsReference.rouble,
+        onPressed: () {
+          _showCupertinoPriceSelection();
+        },
+      ),
+      separator,
     ];
 
     List<Widget> _objectInfo = [

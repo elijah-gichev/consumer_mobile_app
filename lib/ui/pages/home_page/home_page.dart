@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
+import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.dart';
 import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
@@ -19,35 +20,43 @@ class _HomePageState extends State<HomePage> {
       },
       child: AutoTabsRouter.tabBar(
         routes: [
-          const ClientsPageRoute(),
+          const ClientsPageRoute(), // проекты
+          MyFlatsPageRoute(), // мои объекты
+          const SmartDistrictPageRoute(), // умный район
           ClientPageRoute(client: Client.blank()),
           const OffersPageRoute(),
-          MyFlatsPageRoute(),
         ],
         builder: (context, child, animation) {
           return Scaffold(
             body: child,
             bottomNavigationBar: BottomNavigationBar(
               unselectedIconTheme: const IconThemeData(color: Colors.grey),
+              selectedItemColor: Colors.orange[600]!,
               iconSize: 26,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  label: 'Clients',
+                  label: 'Проекты',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.chat_bubble_outline_rounded),
-                  label: 'Client',
+                  label: 'Мои объекты',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.people),
-                  label: 'Offers',
+                  label: 'Умный район',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.g_mobiledata,
+                    Icons.account_circle,
                   ),
-                  label: 'Flats',
+                  label: 'Профиль',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.chat_bubble_outline_rounded,
+                  ),
+                  label: 'Чат-бот',
                 ),
               ],
               currentIndex: AutoTabsRouter.of(context).activeIndex,
