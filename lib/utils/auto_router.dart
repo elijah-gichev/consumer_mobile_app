@@ -2,6 +2,7 @@
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
 import 'package:auto_route/auto_route.dart';
+import 'package:bavito_mobile_app/ui/pages/3d_model_page/model_3d_page.dart';
 import 'package:bavito_mobile_app/ui/pages/auth/screens/login_screen.dart';
 import 'package:bavito_mobile_app/ui/pages/client_page/client_page.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/clients_page.dart';
@@ -69,6 +70,10 @@ import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.da
     AutoRoute(
       path: 'companyPage',
       page: CompanyPage,
+    ),
+    AutoRoute(
+      path: 'model3DPage',
+      page: Model3DPage,
     ),
   ],
 )

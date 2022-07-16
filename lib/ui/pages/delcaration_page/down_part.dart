@@ -1,3 +1,4 @@
+import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -10,13 +11,7 @@ class _SalesData {
 }
 
 class DownPart extends StatelessWidget {
-  List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', 28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
-  ];
+  List<_SalesData> data = [_SalesData('Jan', 35), _SalesData('Feb', 28), _SalesData('Mar', 34), _SalesData('Apr', 32), _SalesData('May', 40)];
 
   final String description;
   DownPart({
@@ -28,9 +23,7 @@ class DownPart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: ListView(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+      child: Column(
         children: [
           const Text(
             "Описание",
@@ -44,7 +37,7 @@ class DownPart extends StatelessWidget {
           ),
           Text(description),
           SizedBox(
-            height: 49.h,
+            height: 20.h,
           ),
           const Text(
             "Характеристики",
@@ -53,12 +46,7 @@ class DownPart extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          const Text(
-            "Об объекте",
-          ),
+          Description(),
           SizedBox(
             height: 20.h,
           ),

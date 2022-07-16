@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
+import 'package:bavito_mobile_app/ui/pages/3d_model_page/model_3d_page.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/down_part.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/creating_state.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/photo_cards.dart';
+import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -47,25 +50,6 @@ class DeclarationPage extends StatelessWidget {
               imageUrls: imageUrls,
             ),
           ),
-          // TextButton(
-          //   onPressed: () {
-          //     // showModalBottomSheet(
-          //     //   isScrollControlled: true,
-          //     //   shape: RoundedRectangleBorder(
-          //     //     borderRadius: BorderRadius.circular(10.0),
-          //     //   ),
-          //     //   context: context,
-          //     //   builder: (_) => const DetailsPage(),
-          //     // );
-          //   },
-          //   child: const Text(
-          //     'Добавить',
-          //     style: TextStyle(
-          //       fontSize: 15,
-          //       color: Colors.blue,
-          //     ),
-          //   ),
-          // ),
           SizedBox(
             height: 5.h,
           ),
@@ -134,25 +118,31 @@ class DeclarationPage extends StatelessWidget {
             ),
             color: Colors.grey[300],
           ),
-          SizedBox(
-            height: 46.h,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/icons/3d.png",
-                ),
-                SizedBox(
-                  width: 10.h,
-                ),
-                Text(
-                  "3D-модель квартиры",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15.sm,
+          GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () {
+              context.router.push(const Model3DPageRoute());
+            },
+            child: SizedBox(
+              height: 46.h,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/icons/3d.png",
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 10.h,
+                  ),
+                  Text(
+                    "3D-модель квартиры",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.sm,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Container(
@@ -196,13 +186,6 @@ class DeclarationPage extends StatelessWidget {
             color: Colors.grey[300],
           ),
           flat.isDone ? Container() : const CreatingState(),
-          SizedBox(
-            height: 600.h,
-            child: ModelViewer(
-              src: 'assets/images/model.glb',
-              backgroundColor: Colors.blueAccent,
-            ),
-          ),
         ],
       ),
     );
