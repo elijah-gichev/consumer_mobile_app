@@ -114,7 +114,7 @@ class HousePage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 20.h),
+                  padding: EdgeInsets.only(top: 10.h),
                   height: 170.h,
                   child: const FeaturesList(),
                 ),

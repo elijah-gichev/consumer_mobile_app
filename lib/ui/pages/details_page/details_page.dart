@@ -205,8 +205,8 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
       separator,
       DetailsTile(
-        title: 'Ростов-на-Дону',
-        subtitle: 'Кировский, Ленинский, Пролетарский',
+        title: 'Краснодар',
+        subtitle: 'Центральный, Фестивальный, Плодородный',
         iconAsset: AssetIconsReference.location,
         onPressed: () {
           //TODO: функционал
