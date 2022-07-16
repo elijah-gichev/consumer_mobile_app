@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                   label: 'Проекты',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.chat_bubble_outline_rounded),
+                  icon: Icon(Icons.turned_in),
                   label: 'Мои объекты',
                 ),
                 BottomNavigationBarItem(
