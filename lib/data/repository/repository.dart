@@ -59,7 +59,26 @@ class Repository {
         },
       ),
     );
+
     final Map data = jsonDecode(request.toString());
+    final res = data["data"]
+        .map<Flats>(
+          (e) => Flats.fromMap(e),
+        )
+        .toList();
+    return res;
+  }
+
+  Future<List<Flats>> getFlats() async {
+    final Response request = await dio.get(
+      dom + '/api/client/flats',
+      options: Options(
+        headers: {
+          "token": token,
+        },
+      ),
+    );
+    final data = jsonDecode(request.toString());
     final res = data["data"]
         .map<Flats>(
           (e) => Flats.fromMap(e),

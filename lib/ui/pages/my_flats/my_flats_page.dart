@@ -1,5 +1,6 @@
 import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/data/repository/flats_repository.dart';
+import 'package:bavito_mobile_app/data/repository/repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/ui/models/flats.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
@@ -44,9 +45,9 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
       ),
       body: widget.isFlatsExist
           ? Padding(
-            padding: const EdgeInsets.all(13.0),
-            child: FutureBuilder<List<Flats>>(
-                future: getIt<FlatsRepository>().getFlats(),
+              padding: const EdgeInsets.all(13.0),
+              child: FutureBuilder<List<Flats>>(
+                future: getIt<Repository>().getFlats(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -65,7 +66,7 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
                   );
                 },
               ),
-          )
+            )
           : Container(
               child: const Center(
                 child: Text(

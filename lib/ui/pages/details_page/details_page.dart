@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/ui/models/details.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/widgets/category.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/widgets/details_tile.dart';
@@ -12,7 +13,8 @@ import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet.dart
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+  final void Function(Details) onDetailsReady;
+  const DetailsPage({required this.onDetailsReady, Key? key}) : super(key: key);
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -359,6 +361,8 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
                 TextButton(
                   onPressed: () {
+                    widget.onDetailsReady(details);
+                    context.router.pop();
                     print(details);
                   },
                   child: Text(

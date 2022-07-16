@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bavito_mobile_app/ui/models/flats.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -38,22 +36,4 @@ class FlatsRepository {
       isDone: true,
     ),
   ];
-
-  Future<List<Flats>> getFlats() async {
-    final Response request = await dio.get(
-      dom + '/api/client/flats',
-      options: Options(
-        headers: {
-          "token": token,
-        },
-      ),
-    );
-    final data = jsonDecode(request.toString());
-    final res = data["data"]
-        .map<Flats>(
-          (e) => Flats.fromMap(e),
-        )
-        .toList();
-    return res;
-  }
 }

@@ -16,12 +16,12 @@ class Flats extends Offer {
     required this.isDone,
     required this.square,
   }) : super(
-            object: object,
-            address: address,
-            price: price,
-            image: image,
-          );
-  
+          object: object,
+          address: address,
+          price: price,
+          image: image,
+        );
+
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'floor': floor,
@@ -38,7 +38,7 @@ class Flats extends Offer {
       address: map["address"] as String,
       image: map["image"] ?? "assets/images/flat1.png",
       object: map["title"] as String,
-      price: map["cost"] as num,
+      price: (map["cost"] as num) / 1000000,
     );
   }
 
@@ -52,11 +52,8 @@ class Flats extends Offer {
   @override
   bool operator ==(covariant Flats other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.floor == floor &&
-      other.isDone == isDone &&
-      other.square == square;
+
+    return other.floor == floor && other.isDone == isDone && other.square == square;
   }
 
   @override
