@@ -38,7 +38,7 @@ class Flats extends Offer {
       address: map["address"] as String,
       image: map["image"] ?? "assets/images/flat1.png",
       object: map["title"] as String,
-      price: map["cost"] as num,
+      price: map["cost"] / 1000000,
     );
   }
 

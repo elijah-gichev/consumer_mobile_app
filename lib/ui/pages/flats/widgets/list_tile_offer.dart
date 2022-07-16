@@ -72,7 +72,7 @@ class ListTileOffer extends StatelessWidget {
                         color: Colors.yellow[600],
                         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
                         child: Text(
-                          offer.price.toString() +"млн" + ' ₽',
+                          offer.price.round().toString() +" млн" + ' ₽',
                           style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
