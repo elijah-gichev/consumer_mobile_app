@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/models/client.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
+import 'package:bavito_mobile_app/ui/pages/dash_chat_page/dash_chat_page.dart';
 import 'package:bavito_mobile_app/ui/widgets/offers_list.dart';
 import 'package:bavito_mobile_app/ui/pages/offers_page/widgets/request_card.dart';
+import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -78,7 +81,9 @@ class _OffersPageState extends State<OffersPage> {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.push(DashChatPageRoute());
+                  },
                   child: const Text(
                     'Добавить',
                     style: TextStyle(
