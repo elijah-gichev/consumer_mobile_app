@@ -195,7 +195,10 @@ class DeclarationPage extends StatelessWidget {
             ),
             color: Colors.grey[300],
           ),
-          DownPart(description: "Бла бла бла"),
+          DownPart(
+            description:
+                "Дом расположен в ЗЖМ, мкр Левенцовский, вблизи остановки общественного транспорта. Рядом расположены гипермаркеты 'Магнит', 'Пятерочка', 'Лента', 'Метро', отделение 'Сбербанка'. В районе работают 6 детских садов, 1 школа. Есть собственная управляющая ко...",
+          ),
           Container(
             child: SizedBox(
               height: 8.w,
@@ -207,7 +210,6 @@ class DeclarationPage extends StatelessWidget {
       ),
     );
   }
-  
 }
 
 class _SalesData {

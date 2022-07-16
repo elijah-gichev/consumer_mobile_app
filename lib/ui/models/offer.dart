@@ -4,7 +4,7 @@ import 'dart:convert';
 class Offer {
   final String object;
   final String address;
-  final double price;
+  final num price;
   final String image;
 
   Offer({
@@ -19,7 +19,7 @@ class Offer {
     String? square,
     String? floor,
     String? address,
-    double? price,
+    int? price,
     String? date,
     String? image,
   }) {
@@ -44,7 +44,7 @@ class Offer {
     return Offer(
       object: map['title'] as String,
       address: map['address'] as String,
-      price:map['min_cost']  / 1000000 as double,
+      price:map['min_cost']  / 1000000,
       image: map['image'] ?? "assets/images/house1.jpg",
     );
   }
