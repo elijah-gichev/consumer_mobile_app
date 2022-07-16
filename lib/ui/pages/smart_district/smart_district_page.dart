@@ -21,7 +21,7 @@ class SmartDistrictPage extends StatelessWidget {
                     contentPadding: EdgeInsets.all(0),
                     leading: Icon(
                       Icons.attach_money_sharp,
-                      size: 20,
+                      size: 30,
                     ),
                     title: Text(
                       'Привет, Иван',
