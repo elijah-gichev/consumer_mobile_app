@@ -144,7 +144,7 @@ class _DetailsPageState extends State<DetailsPage> {
               fontSize: 14.sp,
             ),
           ),
-          items: HouseType.values.map((HouseType e) => MultiSelectItem(e, e.string)).toList(),
+          items: HouseType.values.map((HouseType e) => MultiSelectItem(e, e.name)).toList(),
           initialValue: details.houseType,
           onConfirm: (List<HouseType> values) {
             setState(() {
@@ -177,7 +177,7 @@ class _DetailsPageState extends State<DetailsPage> {
               fontSize: 14.sp,
             ),
           ),
-          items: Parking.values.map((Parking e) => MultiSelectItem(e, e.string)).toList(),
+          items: Parking.values.map((Parking e) => MultiSelectItem(e, e.name)).toList(),
           initialValue: details.parking,
           onConfirm: (List<Parking> values) {
             setState(() {
@@ -287,7 +287,7 @@ class _DetailsPageState extends State<DetailsPage> {
         onPressed: () {
           _showHouseTypeSelection();
         },
-        trailing: details.houseType.map((e) => e.string).join(', '),
+        trailing: details.houseType.map((e) => e.name).join(', '),
         trailingStyle: TextStyle(
           fontSize: 13.sp,
         ),
@@ -299,7 +299,7 @@ class _DetailsPageState extends State<DetailsPage> {
         onPressed: () {
           _showParkingSelection();
         },
-        trailing: details.parking.map((e) => e.string).join(', '),
+        trailing: details.parking.map((e) => e.name).join(', '),
         trailingStyle: TextStyle(
           fontSize: 13.sp,
         ),

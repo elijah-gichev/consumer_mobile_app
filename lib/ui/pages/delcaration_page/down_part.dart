@@ -30,6 +30,7 @@ class DownPart extends StatelessWidget {
       padding: const EdgeInsets.all(15.0),
       child: ListView(
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           const Text(
             "Описание",
@@ -57,6 +58,9 @@ class DownPart extends StatelessWidget {
           ),
           const Text(
             "Об объекте",
+          ),
+          SizedBox(
+            height: 20.h,
           ),
           const Text(
             "График стоимости квартиры",

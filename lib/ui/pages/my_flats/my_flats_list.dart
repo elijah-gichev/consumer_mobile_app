@@ -18,7 +18,7 @@ class MyFlatsList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: offers.length,
-      itemBuilder: ((context, index) {
+      itemBuilder: (context, index) {
         final offer = offers[index];
         return Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
@@ -34,7 +34,7 @@ class MyFlatsList extends StatelessWidget {
             isDone: offers[index].isDone,
           ),
         );
-      }),
+      },
     );
   }
 }

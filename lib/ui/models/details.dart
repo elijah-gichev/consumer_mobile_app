@@ -95,7 +95,7 @@ enum View {
 }
 
 extension ViewToString on View {
-  String get string {
+   String get string {
     switch (this) {
       case View.outside:
         return 'На улицу';
@@ -111,15 +111,17 @@ enum HouseType {
   block,
 }
 
-extension HouseTypeToString on HouseType {
-  String get string {
-    switch (this) {
+extension HouseTypeString on HouseType {
+  static String viewToString(HouseType data) {
+    switch (data) {
       case HouseType.brick:
-        return 'Кирпичный';
+        return "Кирпичный";
       case HouseType.monolithic:
-        return 'Монолитный';
+        return "Монолитный";
       case HouseType.block:
-        return 'Блочный';
+        return "Блочный";
+      default:
+        return "Блочный";
     }
   }
 }
@@ -130,13 +132,15 @@ enum Parking {
   //parallel :3
 }
 
-extension ParkingToString on Parking {
-  String get string {
-    switch (this) {
+extension ParkingString on Parking {
+  static String viewToString(Parking data) {
+    switch (data) {
       case Parking.ground:
-        return 'Наземная';
+        return "Наземная";
       case Parking.underground:
-        return 'Подземная';
+        return "Подземная";
+      default:
+        return "Наземная";
     }
   }
 }

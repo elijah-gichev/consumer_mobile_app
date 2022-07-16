@@ -1,7 +1,14 @@
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
-import 'package:bavito_mobile_app/ui/models/flats.dart';
-import 'package:bavito_mobile_app/ui/pages/details_page/details_page.dart';
+import 'package:bavito_mobile_app/ui/pages/delcaration_page/down_part.dart';
+import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/creating_state.dart';
+import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/photo_cards.dart';
+import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/video.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../models/flats.dart';
+import '../../widgets/step_progress_indicator.dart';
 
 class DeclarationPage extends StatelessWidget {
   final imageUrls = [
@@ -17,6 +24,13 @@ class DeclarationPage extends StatelessWidget {
     Key? key,
     required this.flat,
   }) : super(key: key);
+  List<_SalesData> data = [
+    _SalesData('Jan', 35),
+    _SalesData('Feb', 28),
+    _SalesData('Mar', 34),
+    _SalesData('Apr', 32),
+    _SalesData('May', 40)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,36 +45,174 @@ class DeclarationPage extends StatelessWidget {
         ),
         showback: true,
       ),
-      body: Column(
+      extendBodyBehindAppBar: true,
+      body: ListView(
         children: [
-          TextButton(
-            onPressed: () {
-              // showModalBottomSheet(
-              //   isScrollControlled: true,
-              //   shape: RoundedRectangleBorder(
-              //     borderRadius: BorderRadius.circular(10.0),
-              //   ),
-              //   context: context,
-              //   builder: (_) => const DetailsPage(),
-              // );
-            },
-            child: const Text(
-              'Добавить',
+          SizedBox(
+            height: 300,
+            child: PhotoCards(
+              imageUrls: imageUrls,
+            ),
+          ),
+          // TextButton(
+          //   onPressed: () {
+          //     // showModalBottomSheet(
+          //     //   isScrollControlled: true,
+          //     //   shape: RoundedRectangleBorder(
+          //     //     borderRadius: BorderRadius.circular(10.0),
+          //     //   ),
+          //     //   context: context,
+          //     //   builder: (_) => const DetailsPage(),
+          //     // );
+          //   },
+          //   child: const Text(
+          //     'Добавить',
+          //     style: TextStyle(
+          //       fontSize: 15,
+          //       color: Colors.blue,
+          //     ),
+          //   ),
+          // ),
+          SizedBox(
+            height: 5.h,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 15.w,
+            ),
+            child: Text(
+              flat.object,
               style: TextStyle(
-                fontSize: 15,
-                color: Colors.blue,
+                fontWeight: FontWeight.w400,
+                fontSize: 18.sm,
               ),
             ),
           ),
-          // SizedBox(
-          //   height: 600.h,
-          //   child: ModelViewer(
-          //     src: 'assets/images/model.glb',
-          //     backgroundColor: Colors.blueAccent,
-          //   ),
-          // ),
+          SizedBox(
+            height: 5.h,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.fmd_good_outlined,
+                  color: Colors.blue,
+                ),
+                SizedBox(
+                  width: 4.w,
+                ),
+                Text(
+                  flat.address,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                color: Colors.yellow[600],
+                padding: const EdgeInsets.symmetric(
+                  vertical: 3,
+                  horizontal: 5,
+                ),
+                child: Text(
+                  flat.price + ' ₽',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 16.h,
+          ),
+          Container(
+            child: SizedBox(
+              height: 8.w,
+            ),
+            color: Colors.grey[300],
+          ),
+          SizedBox(
+            height: 46.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/icons/3d.png",
+                ),
+                SizedBox(
+                  width: 10.h,
+                ),
+                Text(
+                  "3D-модель квартиры",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15.sm,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            child: SizedBox(
+              height: 8.w,
+            ),
+            color: Colors.grey[300],
+          ),
+          SizedBox(
+            height: 46.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/icons/calc.png",
+                ),
+                SizedBox(
+                  width: 10.h,
+                ),
+                Text(
+                  "Калькулятор ипотеки",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15.sm,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            child: SizedBox(
+              height: 8.w,
+            ),
+            color: Colors.grey[300],
+          ),
+          DownPart(description: "Бла бла бла"),
+          Container(
+            child: SizedBox(
+              height: 8.w,
+            ),
+            color: Colors.grey[300],
+          ),
+          flat.isDone ? Container() : const CreatingState(),
         ],
       ),
     );
   }
+  
+}
+
+class _SalesData {
+  _SalesData(this.year, this.sales);
+
+  final String year;
+  final double sales;
 }
