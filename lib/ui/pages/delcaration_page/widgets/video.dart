@@ -1,51 +1,36 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:video_player/video_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Video extends StatefulWidget {
+class Video extends StatelessWidget {
   const Video({Key? key}) : super(key: key);
 
   @override
-  State<Video> createState() => _VideoState();
-}
-
-class _VideoState extends State<Video> {
-  late VideoPlayerController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset('assets/Butterfly-209.mp4');
-
-    _controller.addListener(() {
-      setState(() {});
-    });
-    _controller.setLooping(true);
-    _controller.initialize().then((_) => setState(() {}));
-    _controller.play();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        
-      },
-      child: Stack(
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(8),
+        ),
+      ),
+      height: 100,
+      child: Row(
         children: [
-          VideoPlayer(
-            _controller,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              "assets/images/house4.jpg",
+            ),
           ),
-          VideoProgressIndicator(
-            _controller,
-            allowScrubbing: true,
+          SizedBox(
+            width: 20.w,
+          ),
+          const Text(
+            "Смотреть трансляцию \nстроительства",
+            style: TextStyle(
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

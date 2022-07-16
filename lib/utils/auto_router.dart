@@ -9,7 +9,6 @@ import 'package:bavito_mobile_app/ui/pages/delcaration_page/declaration_page.dar
 import 'package:bavito_mobile_app/ui/pages/home_page/home_page.dart';
 import 'package:bavito_mobile_app/ui/pages/my_flats/my_flats_page.dart';
 import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
-import 'package:bavito_mobile_app/ui/pages/video_page/video_page.dart';
 
 @MaterialAutoRouter(
   //replaceInRouteName: 'Page,Route',
@@ -45,10 +44,7 @@ import 'package:bavito_mobile_app/ui/pages/video_page/video_page.dart';
       path: 'declarationPage',
       page: DeclarationPage,
     ),
-    AutoRoute(
-      path: 'videoPage',
-      page: VideoPage,
-    ),
+    
   ],
 )
 class $AppRouter {}

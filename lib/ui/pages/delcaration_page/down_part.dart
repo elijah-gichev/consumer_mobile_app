@@ -30,6 +30,7 @@ class DownPart extends StatelessWidget {
       padding: const EdgeInsets.all(15.0),
       child: ListView(
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           const Text(
             "Описание",
