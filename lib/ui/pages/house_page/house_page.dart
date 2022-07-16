@@ -1,10 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/models/house.dart';
-import 'package:bavito_mobile_app/ui/pages/clients_page/clients_page.dart';
-import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/services_list.dart';
 import 'package:bavito_mobile_app/ui/pages/house_page/widgets/features_list.dart';
 import 'package:bavito_mobile_app/ui/pages/house_page/widgets/photo_cards.dart';
 import 'package:bavito_mobile_app/ui/pages/house_page/widgets/position_card.dart';
+import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +25,7 @@ class HousePage extends StatelessWidget {
         title: Text(
           house.address,
           style: const TextStyle(
-            fontSize: 15,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -34,11 +34,11 @@ class HousePage extends StatelessWidget {
         buttonColor: Colors.white,
       ),
       extendBodyBehindAppBar: true,
-      body: Expanded(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Stack(children: [
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Stack(
+              children: [
                 ColorFiltered(
                   colorFilter: const ColorFilter.mode(
                     Color.fromRGBO(0, 0, 0, 0.2),
@@ -54,8 +54,8 @@ class HousePage extends StatelessWidget {
                 Positioned(
                   left: 20,
                   bottom: 20,
-                  child: Container(
-                    height: 300.h,
+                  child: SizedBox(
+                    height: 250.h,
                     width: 0.9.sw,
                     child: Column(
                       children: [
@@ -71,7 +71,9 @@ class HousePage extends StatelessWidget {
                           leadingIcon: Icons.house,
                           title: 'Квартиры',
                           subtitle: 'от 5.8 млн. Р',
-                          onTap: () {},
+                          onTap: () {
+                            context.router.push(const FlatsPageRoute());
+                          },
                         ),
                         const Divider(
                           color: Colors.white,
@@ -81,42 +83,64 @@ class HousePage extends StatelessWidget {
                           leadingIcon: Icons.local_shipping,
                           title: 'Ход строительства',
                           subtitle: 'Обновлено 1 июля 2022',
-                          onTap: () {},
+                          onTap: () {
+                            context.router.push(const ConstructionProgressPageRoute());
+                          },
                         ),
                       ],
                     ),
                   ),
                 ),
-              ]),
+              ],
             ),
-            SliverToBoxAdapter(
-              child: Container(
-                padding: EdgeInsets.only(top: 20.h),
-                height: 170.h,
-                child: const FeaturesList(),
-              ),
-            ),
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Divider(
-                  height: 1,
-                  thickness: 0,
-                  color: Colors.grey,
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      const Text(
+                        'Особенности',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text('См. все'),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                padding: EdgeInsets.only(top: 20.h),
-                child: PositionCard(
-                  onTap: () {},
-                  house: house,
+                Container(
+                  padding: EdgeInsets.only(top: 20.h),
+                  height: 170.h,
+                  child: const FeaturesList(),
                 ),
+              ],
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Divider(
+                height: 1,
+                thickness: 0,
+                color: Colors.grey,
               ),
             ),
-          ],
-        ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.only(top: 20.h),
+              child: PositionCard(
+                onTap: () {},
+                house: house,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -137,30 +161,33 @@ class HouseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      horizontalTitleGap: 0,
-      contentPadding: const EdgeInsets.all(0),
-      leading: Icon(
-        leadingIcon,
-        color: Colors.white,
-      ),
-      title: Text(
-        title,
-        style: const TextStyle(
+    return GestureDetector(
+      onTap: onTap,
+      child: ListTile(
+        horizontalTitleGap: 0,
+        contentPadding: const EdgeInsets.all(0),
+        leading: Icon(
+          leadingIcon,
           color: Colors.white,
         ),
-      ),
-      subtitle: Text(
-        subtitle,
-        style: const TextStyle(
-          color: Colors.white,
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
         ),
-      ),
-      trailing: IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          Icons.arrow_forward_ios,
-          color: Colors.white,
+        subtitle: Text(
+          subtitle,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        trailing: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.white,
+          ),
         ),
       ),
     );

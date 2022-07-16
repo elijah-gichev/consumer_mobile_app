@@ -22,7 +22,7 @@ class _OffersPageState extends State<FlatsPage> {
         title: Text(
           'Квартиры',
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 18,
             fontWeight: FontWeight.w400,
           ),
         ),
