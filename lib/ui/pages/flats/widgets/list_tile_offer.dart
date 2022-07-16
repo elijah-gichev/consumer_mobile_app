@@ -2,16 +2,14 @@ import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyFlatsCard extends StatelessWidget {
+class ListTileOffer extends StatelessWidget {
   final Offer offer;
   final VoidCallback onTap;
-  final bool isDone;
 
-  const MyFlatsCard({
+  const ListTileOffer({
     Key? key,
     required this.offer,
     required this.onTap,
-    required this.isDone,
   }) : super(key: key);
 
   @override
@@ -64,23 +62,21 @@ class MyFlatsCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  SizedBox(height: 35.h),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      isDone
-                          ? const Text(
-                              "Сдано",
-                              style: TextStyle(
-                                color: Colors.green,
-                              ),
-                            )
-                          : const Text(
-                              "Готово на 76%",
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
+                      Container(
+                        color: Colors.yellow[600],
+                        padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+                        child: Text(
+                          offer.price + ' ₽',
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                       Text(
                         offer.date,
                         style: const TextStyle(
