@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 class FlatsRepository {
   final List<Flats> _offers = [
     Flats(
-      object: 'Дом',
+      object: 'Квартира-студия, 40м², 16/23 эт.',
       square: '100',
       floor: '2',
       address: 'Кировский р-н, Очаковская, 39',
@@ -15,7 +15,7 @@ class FlatsRepository {
       isDone: true,
     ),
     Flats(
-      object: 'Дом',
+      object: 'Квартира-студия, 40м², 16/23 эт.',
       square: '100',
       floor: '2',
       address: 'Кировский р-н, Очаковская, 39',
@@ -25,7 +25,7 @@ class FlatsRepository {
       isDone: false,
     ),
     Flats(
-      object: 'Дом',
+      object: 'Квартира-студия, 40м², 16/23 эт.',
       square: '100',
       floor: '2',
       address: 'Кировский р-н, Очаковская, 39',

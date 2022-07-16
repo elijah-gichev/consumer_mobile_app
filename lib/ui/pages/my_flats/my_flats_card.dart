@@ -51,7 +51,7 @@ class MyFlatsCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    '${offer.object} ${offer.square} кв. м., ${offer.floor} эт.',
+                    '${offer.object} ${offer.square} м², ${offer.floor} эт.',
                     style: const TextStyle(fontSize: 15),
                   ),
                   const SizedBox(height: 5),
@@ -64,7 +64,7 @@ class MyFlatsCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  SizedBox(height: 35.h),
+                  SizedBox(height: 25.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
