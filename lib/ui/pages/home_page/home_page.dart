@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           MyFlatsPageRoute(), // мои объекты
           const SmartDistrictPageRoute(), // умный район
           ClientPageRoute(client: Client.blank()),
-          const OffersPageRoute(),
+          const DashChatPageRoute(),
         ],
         builder: (context, child, animation) {
           return Scaffold(

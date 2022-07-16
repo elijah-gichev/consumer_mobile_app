@@ -34,8 +34,8 @@ import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.da
           page: ClientPage,
         ),
         AutoRoute(
-          path: 'offersPage',
-          page: OffersPage,
+          path: 'dashChatPage',
+          page: DashChatPage,
         ),
         AutoRoute(
           path: 'myFlatsPage',
@@ -76,10 +76,11 @@ import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.da
       path: 'model3DPage',
       page: Model3DPage,
     ),
-    AutoRoute(
-      path: 'dashChatPage',
-      page: DashChatPage,
-    ),
+
+    // AutoRoute(
+    //       path: 'offersPage',
+    //       page: OffersPage,
+    //     ),
   ],
 )
 class $AppRouter {}
