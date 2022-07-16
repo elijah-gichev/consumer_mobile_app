@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
+import 'package:bavito_mobile_app/ui/models/house.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/offer_item.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/services_list.dart';
+import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -71,21 +74,32 @@ class _ClientsPageState extends State<ClientsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            PhotoCards(
-              imageUrls: urlList,
-            ),
-            SizedBox(height: 15.h),
             SizedBox(
-              height: 110.h,
-              child: const ServicesList(),
+              height: 280.h,
+              child: PhotoCards(
+                imageUrls: urlList,
+              ),
             ),
             SizedBox(height: 15.h),
-            const Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: Offers(),
+            Expanded(
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Container(
+                      height: 110.h,
+                      child: const ServicesList(),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 15.h,
+                        horizontal: 15,
+                      ),
+                      child: const Offers(),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -124,11 +138,14 @@ class Offers extends StatelessWidget {
             shrinkWrap: true,
             crossAxisCount: 2,
             childAspectRatio: 0.95,
+            physics: const NeverScrollableScrollPhysics(),
             children: offers.map(
               (offer) {
                 return OfferItem(
                   offer: offer,
-                  onTap: () {},
+                  onTap: () {
+                    context.router.push(HousePageRoute(house: House.blank()));
+                  },
                 );
               },
             ).toList(),

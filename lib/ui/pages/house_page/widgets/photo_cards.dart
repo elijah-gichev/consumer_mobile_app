@@ -1,4 +1,4 @@
-import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/page_counter.dart';
+import 'package:bavito_mobile_app/ui/pages/house_page/widgets/page_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,11 +32,14 @@ class _PhotoCardsState extends State<PhotoCards> {
                 )
                 .toList(),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: PageCounter(
-              currentPage: currentPage,
-              totalCount: widget.imageUrls.length,
+          Padding(
+            padding: EdgeInsets.only(bottom: 20.h),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: PageCounter(
+                currentPage: currentPage,
+                totalCount: widget.imageUrls.length,
+              ),
             ),
           ),
         ],

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showback;
-  final String title;
+  final Widget title;
+  final Color buttonColor;
+
   final bool isCenterTitle;
 
   const CustomAppBar({
@@ -11,6 +13,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.showback = false,
     this.isCenterTitle = true,
+    this.buttonColor = Colors.black,
   }) : super(key: key);
 
   @override
@@ -20,20 +23,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.black,
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
+      title: title,
       centerTitle: isCenterTitle,
       leading: showback
           ? IconButton(
               onPressed: () {
                 context.router.pop();
               },
-              icon: const Icon(Icons.arrow_back_ios_new))
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                size: 20,
+              ),
+              color: buttonColor,
+            )
           : null,
     );
   }
