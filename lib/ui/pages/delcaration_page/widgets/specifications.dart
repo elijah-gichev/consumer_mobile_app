@@ -2,6 +2,7 @@ import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/specificatio
 import 'package:flutter/material.dart';
 
 import '../../../models/details.dart';
+import '../../details_page/widgets/details_tile.dart';
 
 class Specification extends StatelessWidget {
   final Details data;
@@ -14,11 +15,7 @@ class Specification extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SpecificationUnit(
-          title: "Планировка",
-          subtitle: "",
-          icon: "icon",
-        )
+        
       ],
     );
   }

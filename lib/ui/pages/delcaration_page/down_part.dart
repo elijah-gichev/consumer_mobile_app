@@ -59,6 +59,9 @@ class DownPart extends StatelessWidget {
           const Text(
             "Об объекте",
           ),
+          SizedBox(
+            height: 20.h,
+          ),
           const Text(
             "График стоимости квартиры",
             style: TextStyle(

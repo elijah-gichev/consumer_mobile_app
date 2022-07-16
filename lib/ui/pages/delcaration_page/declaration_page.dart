@@ -45,27 +45,34 @@ class DeclarationPage extends StatelessWidget {
         ),
         showback: true,
       ),
-      body: Column(
+      extendBodyBehindAppBar: true,
+      body: ListView(
         children: [
-          TextButton(
-            onPressed: () {
-              // showModalBottomSheet(
-              //   isScrollControlled: true,
-              //   shape: RoundedRectangleBorder(
-              //     borderRadius: BorderRadius.circular(10.0),
-              //   ),
-              //   context: context,
-              //   builder: (_) => const DetailsPage(),
-              // );
-            },
-            child: const Text(
-              'Добавить',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.blue,
-              ),
+          SizedBox(
+            height: 300,
+            child: PhotoCards(
+              imageUrls: imageUrls,
             ),
           ),
+          // TextButton(
+          //   onPressed: () {
+          //     // showModalBottomSheet(
+          //     //   isScrollControlled: true,
+          //     //   shape: RoundedRectangleBorder(
+          //     //     borderRadius: BorderRadius.circular(10.0),
+          //     //   ),
+          //     //   context: context,
+          //     //   builder: (_) => const DetailsPage(),
+          //     // );
+          //   },
+          //   child: const Text(
+          //     'Добавить',
+          //     style: TextStyle(
+          //       fontSize: 15,
+          //       color: Colors.blue,
+          //     ),
+          //   ),
+          // ),
           SizedBox(
             height: 5.h,
           ),
@@ -93,7 +100,7 @@ class DeclarationPage extends StatelessWidget {
                   color: Colors.blue,
                 ),
                 SizedBox(
-                  width: 8.w,
+                  width: 4.w,
                 ),
                 Text(
                   flat.address,
@@ -105,19 +112,22 @@ class DeclarationPage extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            width: 50.w,
-            child: Container(
-              color: Colors.yellow[600],
-              padding: const EdgeInsets.symmetric(
-                vertical: 3,
-                horizontal: 5,
-              ),
-              child: Text(
-                flat.price + ' ₽',
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                color: Colors.yellow[600],
+                padding: const EdgeInsets.symmetric(
+                  vertical: 3,
+                  horizontal: 5,
+                ),
+                child: Text(
+                  flat.price + ' ₽',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -186,11 +196,18 @@ class DeclarationPage extends StatelessWidget {
             color: Colors.grey[300],
           ),
           DownPart(description: "Бла бла бла"),
+          Container(
+            child: SizedBox(
+              height: 8.w,
+            ),
+            color: Colors.grey[300],
+          ),
           flat.isDone ? Container() : const CreatingState(),
         ],
       ),
     );
   }
+  
 }
 
 class _SalesData {
