@@ -9,34 +9,39 @@ class SmartDistrictPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        //padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            SizedBox(
-              height: 50.h,
+            Container(
+              height: 250.h,
+              color: Colors.deepPurpleAccent,
+              child: Column(
+                children: [
+                  const ListTile(
+                    contentPadding: EdgeInsets.all(0),
+                    leading: Icon(
+                      Icons.attach_money_sharp,
+                      size: 20,
+                    ),
+                    title: Text(
+                      'Привет, Иван',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'С возвращением!',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  CompanyAroundTextField(),
+                ],
+              ),
             ),
-            const ListTile(
-              contentPadding: EdgeInsets.all(0),
-              leading: Icon(
-                Icons.attach_money_sharp,
-                size: 20,
-              ),
-              title: Text(
-                'Привет, Иван',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey,
-                ),
-              ),
-              subtitle: Text(
-                'С возвращением!',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            CompanyAroundTextField(),
           ],
         ),
       ),
