@@ -1,5 +1,5 @@
 import 'package:bavito_mobile_app/ui/models/offer.dart';
-import 'package:bavito_mobile_app/ui/pages/offers_page/widgets/list_tile_offer.dart';
+import 'package:bavito_mobile_app/ui/common/list_tile_offer.dart';
 import 'package:flutter/material.dart';
 
 class OffersList extends StatelessWidget {

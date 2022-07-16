@@ -203,7 +203,7 @@ class SmartDistrictPage extends StatelessWidget {
                 SizedBox(
                   height: 130.r,
                   width: 1.sw,
-                  child: CompanyList(),
+                  child: const CompanyList(),
                 ),
               ],
             ),

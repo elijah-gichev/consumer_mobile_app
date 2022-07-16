@@ -2,13 +2,12 @@ import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/down_part.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/creating_state.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/photo_cards.dart';
-import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/video.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../models/flats.dart';
-import '../../widgets/step_progress_indicator.dart';
+
+import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 class DeclarationPage extends StatelessWidget {
   final imageUrls = [
@@ -24,13 +23,7 @@ class DeclarationPage extends StatelessWidget {
     Key? key,
     required this.flat,
   }) : super(key: key);
-  List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', 28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
-  ];
+  List<_SalesData> data = [_SalesData('Jan', 35), _SalesData('Feb', 28), _SalesData('Mar', 34), _SalesData('Apr', 32), _SalesData('May', 40)];
 
   @override
   Widget build(BuildContext context) {
@@ -203,11 +196,17 @@ class DeclarationPage extends StatelessWidget {
             color: Colors.grey[300],
           ),
           flat.isDone ? Container() : const CreatingState(),
+          SizedBox(
+            height: 600.h,
+            child: ModelViewer(
+              src: 'assets/images/model.glb',
+              backgroundColor: Colors.blueAccent,
+            ),
+          ),
         ],
       ),
     );
   }
-  
 }
 
 class _SalesData {
