@@ -123,7 +123,7 @@ class DeclarationPage extends StatelessWidget {
                   horizontal: 5,
                 ),
                 child: Text(
-                  flat.price + ' ₽',
+                  flat.price.toString() + " млн" + ' ₽',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

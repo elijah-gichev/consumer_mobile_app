@@ -2,8 +2,10 @@ import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../models/flats.dart';
+
 class ListTileOffer extends StatelessWidget {
-  final Offer offer;
+  final Flats offer;
   final VoidCallback onTap;
 
   const ListTileOffer({
@@ -70,18 +72,11 @@ class ListTileOffer extends StatelessWidget {
                         color: Colors.yellow[600],
                         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
                         child: Text(
-                          offer.price + ' ₽',
+                          offer.price.toString() +"млн" + ' ₽',
                           style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                      ),
-                      Text(
-                        offer.date,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey,
                         ),
                       ),
                     ],

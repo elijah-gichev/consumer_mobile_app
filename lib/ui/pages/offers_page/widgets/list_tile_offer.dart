@@ -49,7 +49,7 @@ class ListTileOffer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    '${offer.object} ${offer.square} кв. м., ${offer.floor} эт.',
+                    '${offer.object} 50 кв. м., 11 эт.',
                     style: const TextStyle(fontSize: 15),
                   ),
                   const SizedBox(height: 5),
@@ -70,18 +70,11 @@ class ListTileOffer extends StatelessWidget {
                         color: Colors.yellow[600],
                         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
                         child: Text(
-                          offer.price + ' ₽',
+                          offer.price.toString() + "млн" + ' ₽',
                           style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                      ),
-                      Text(
-                        offer.date,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey,
                         ),
                       ),
                     ],
