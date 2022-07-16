@@ -45,12 +45,25 @@ class DeclarationPage extends StatelessWidget {
         ),
         showback: true,
       ),
-      body: ListView(
+      body: Column(
         children: [
-          SizedBox(
-            height: 280.h,
-            child: PhotoCards(
-              imageUrls: imageUrls,
+          TextButton(
+            onPressed: () {
+              // showModalBottomSheet(
+              //   isScrollControlled: true,
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //   ),
+              //   context: context,
+              //   builder: (_) => const DetailsPage(),
+              // );
+            },
+            child: const Text(
+              'Добавить',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.blue,
+              ),
             ),
           ),
           SizedBox(

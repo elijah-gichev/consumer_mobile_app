@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/ui/pages/auth/screens/login_screen.dart';
 import 'package:bavito_mobile_app/ui/pages/client_page/client_page.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/clients_page.dart';
+import 'package:bavito_mobile_app/ui/pages/construction_progress/construction_progress_page.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/declaration_page.dart';
 import 'package:bavito_mobile_app/ui/pages/flats/flats_page.dart';
 import 'package:bavito_mobile_app/ui/pages/home_page/home_page.dart';
@@ -53,6 +54,10 @@ import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
     AutoRoute(
       path: 'flatsPage',
       page: FlatsPage,
+    ),
+    AutoRoute(
+      path: 'constructionProgressPage',
+      page: ConstructionProgressPage,
     ),
   ],
 )

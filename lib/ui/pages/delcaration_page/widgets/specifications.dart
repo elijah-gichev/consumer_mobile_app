@@ -16,7 +16,7 @@ class Specification extends StatelessWidget {
       children: [
         SpecificationUnit(
           title: "Планировка",
-          subtitle: PlanString.planToString(data.plan),
+          subtitle: "",
           icon: "icon",
         )
       ],

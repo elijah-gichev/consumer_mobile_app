@@ -1,30 +1,67 @@
 class Details {
   final String city;
-  final double costFrom;
-  final double costTo;
-  final Plan plan;
-  final double ceilingHeight;
+  final double costMin;
+  final double costMax;
+  final Layout layout;
+  final double ceilingHeightMin;
+  final double ceilingHeightMax;
   final bool isRenovated;
   final int floorMin;
   final int floorMax;
   final View windowView;
-  final HouseType houseType;
+  final List<HouseType> houseType;
+  final List<Parking> parking;
 
   Details({
     required this.city,
-    required this.costFrom,
-    required this.costTo,
-    required this.plan,
-    required this.ceilingHeight,
+    required this.costMin,
+    required this.costMax,
+    required this.layout,
+    required this.ceilingHeightMin,
+    required this.ceilingHeightMax,
     required this.isRenovated,
     required this.floorMin,
     required this.floorMax,
     required this.windowView,
     required this.houseType,
+    required this.parking,
   });
+
+  Details copyWith({
+    city,
+    costMin,
+    costMax,
+    layout,
+    ceilingHeightMin,
+    ceilingHeightMax,
+    isRenovated,
+    floorMin,
+    floorMax,
+    windowView,
+    houseType,
+    parking,
+  }) =>
+      Details(
+          city: city ?? this.city,
+          costMin: costMin ?? this.costMin,
+          costMax: costMax ?? this.costMax,
+          layout: layout ?? this.layout,
+          ceilingHeightMin: ceilingHeightMin ?? this.ceilingHeightMin,
+          ceilingHeightMax: ceilingHeightMax ?? this.ceilingHeightMax,
+          isRenovated: isRenovated ?? this.isRenovated,
+          floorMin: floorMin ?? this.floorMin,
+          floorMax: floorMax ?? this.floorMax,
+          windowView: windowView ?? this.windowView,
+          houseType: houseType ?? this.houseType,
+          parking: parking ?? this.parking);
+
+  @override
+  String toString() {
+    return 'Details(city: $city, costMin: $costMin, costMax: $costMax, layout: $layout, ceilingHeightMin: $ceilingHeightMin, ceilingHeightMax: $ceilingHeightMax, isRenovated: $isRenovated, floorMin: $floorMin, floorMax: $floorMax, windowView: $windowView, houseType: $houseType, parking: $parking)';
+  }
 }
 
-enum Plan {
+enum Layout {
   studio,
   oneRoomed,
   twoRoomed,
@@ -33,23 +70,21 @@ enum Plan {
   penthouse,
 }
 
-extension PlanString on Plan {
-  static String planToString(Plan data) {
-    switch (data) {
-      case Plan.studio:
-        return "Студия";
-      case Plan.oneRoomed:
-        return "Однокомнатная";
-      case Plan.twoRoomed:
-        return "Две комнаты";
-      case Plan.threeRoomed:
-        return "Три комнаты";
-      case Plan.fourRoomed:
-        return "Четыре комнаты";
-      case Plan.penthouse:
-        return "Пентхауз";
-      default:
-        return "Студия";
+extension LayoutToString on Layout {
+  String get string {
+    switch (this) {
+      case Layout.studio:
+        return 'Студия';
+      case Layout.oneRoomed:
+        return '1-комнатная';
+      case Layout.twoRoomed:
+        return '2-комнатная';
+      case Layout.threeRoomed:
+        return '3-комнатная';
+      case Layout.fourRoomed:
+        return '4-комнатная';
+      case Layout.penthouse:
+        return 'Пентхаус';
     }
   }
 }
@@ -59,15 +94,13 @@ enum View {
   window,
 }
 
-extension ViewString on View {
-  String viewToString(View data) {
-    switch (data) {
+extension ViewToString on View {
+   String get string {
+    switch (this) {
       case View.outside:
-        return "На улицу";
+        return 'На улицу';
       case View.window:
-        return "Во двор";
-      default:
-        return "Во двор";
+        return 'Во двор';
     }
   }
 }
@@ -79,7 +112,7 @@ enum HouseType {
 }
 
 extension HouseTypeString on HouseType {
-  String viewToString(HouseType data) {
+  static String viewToString(HouseType data) {
     switch (data) {
       case HouseType.brick:
         return "Кирпичный";
@@ -100,7 +133,7 @@ enum Parking {
 }
 
 extension ParkingString on Parking {
-  String viewToString(Parking data) {
+  static String viewToString(Parking data) {
     switch (data) {
       case Parking.ground:
         return "Наземная";

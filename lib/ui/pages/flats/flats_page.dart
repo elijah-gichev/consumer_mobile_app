@@ -2,6 +2,7 @@ import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
+import 'package:bavito_mobile_app/ui/pages/details_page/details_page.dart';
 import 'package:bavito_mobile_app/ui/widgets/offers_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,7 @@ class _OffersPageState extends State<FlatsPage> {
         title: Text(
           'Квартиры',
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 18,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -37,7 +38,14 @@ class _OffersPageState extends State<FlatsPage> {
               children: [
                 TextButton.icon(
                   onPressed: () {
-                    // context.router.push(DeclarationPageRoute());
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      context: context,
+                      builder: (_) => const DetailsPage(),
+                    );
                   },
                   label: const Text(
                     'Фильтры',
