@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
-import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.dart';
 import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
