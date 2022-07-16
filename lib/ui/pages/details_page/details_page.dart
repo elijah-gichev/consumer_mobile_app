@@ -48,39 +48,40 @@ class _DetailsPageState extends State<DetailsPage> {
 
   Future _showCupertinoLayoutSelection() async {
     showCupertinoModalPopup(
-        context: context,
-        builder: (BuildContext context) => Container(
-              height: 216.h,
-              padding: const EdgeInsets.only(top: 6.0),
-              margin: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              color: CupertinoColors.systemBackground.resolveFrom(context),
-              child: SafeArea(
-                top: false,
-                child: CupertinoPicker(
-                  magnification: 1.22,
-                  squeeze: 1.2,
-                  useMagnifier: true,
-                  itemExtent: 27,
-                  // This is called when selected item is changed.
-                  onSelectedItemChanged: (int selectedItem) {
-                    setState(() {
-                      details = details.copyWith(
-                        layout: Layout.values[selectedItem],
-                      );
-                    });
-                  },
-                  children: List<Widget>.generate(Layout.values.length, (int index) {
-                    return Center(
-                      child: Text(
-                        Layout.values[index].string,
-                      ),
-                    );
-                  }),
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 216.h,
+        padding: const EdgeInsets.only(top: 6.0),
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        child: SafeArea(
+          top: false,
+          child: CupertinoPicker(
+            magnification: 1.22,
+            squeeze: 1.2,
+            useMagnifier: true,
+            itemExtent: 27,
+            // This is called when selected item is changed.
+            onSelectedItemChanged: (int selectedItem) {
+              setState(() {
+                details = details.copyWith(
+                  layout: Layout.values[selectedItem],
+                );
+              });
+            },
+            children: List<Widget>.generate(Layout.values.length, (int index) {
+              return Center(
+                child: Text(
+                  Layout.values[index].string,
                 ),
-              ),
-            ));
+              );
+            }),
+          ),
+        ),
+      ),
+    );
   }
 
   Future _showCupertinoPriceSelection() async {

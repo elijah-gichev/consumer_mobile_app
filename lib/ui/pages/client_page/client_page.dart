@@ -44,7 +44,7 @@ class _ClientPageState extends State<ClientPage> {
       backgroundColor: Colors.grey[100],
       appBar: const CustomAppBar(
         title: Text(
-          'Клиент',
+          'Профиль',
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,

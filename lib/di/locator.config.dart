@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart' as _i6;
 
 import '../data/repository/flats_repository.dart' as _i3;
 import '../data/repository/offers_repository.dart' as _i4;
-import '../data/repository/repository.dart' as _i5;
+import '../data/repository/service_repository.dart' as _i5;
 import '../data/repository/user_repository.dart' as _i7;
 import '../services/user_service.dart' as _i8;
 import 'app_module.dart' as _i9; // ignore_for_file: unnecessary_lambdas
@@ -23,7 +23,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   final registerModule = _$RegisterModule();
   gh.singleton<_i3.FlatsRepository>(_i3.FlatsRepository());
   gh.singleton<_i4.OffersRepository>(_i4.OffersRepository());
-  gh.singleton<_i5.Repository>(_i5.Repository());
+  gh.singleton<_i5.ServiceRepository>(_i5.ServiceRepository());
   await gh.factoryAsync<_i6.SharedPreferences>(() => registerModule.prefs,
       preResolve: true);
   gh.singleton<_i7.UserRepository>(_i7.UserRepository());

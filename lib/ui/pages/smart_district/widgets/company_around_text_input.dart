@@ -11,7 +11,7 @@ class CompanyAroundTextField extends StatelessWidget {
     return SizedBox(
       width: 345.w,
       child: InputForm(
-        title: 'Компании рядом',
+        title: '',
         textField: Align(
           alignment: Alignment.centerLeft,
           child: TextField(
@@ -19,16 +19,18 @@ class CompanyAroundTextField extends StatelessWidget {
             readOnly: true,
             maxLength: 14,
             decoration: InputDecoration(
-              fillColor: Colors.white,
-              filled: true,
-              suffixIconConstraints: BoxConstraints.tight(const Size(40, 20)),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16.0.r),
-                borderSide: BorderSide.none,
-              ),
-              counterText: '',
-              prefixText: '',
-            ),
+                fillColor: Colors.white,
+                filled: true,
+                suffixIconConstraints: BoxConstraints.tight(const Size(40, 20)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.0.r),
+                  borderSide: BorderSide.none,
+                ),
+                labelText: 'Компании рядом',
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.grey[400],
+                )),
             onChanged: (phone) {
               //context.read<LoginCubit>().phoneChanged(fullPhoneNumber);
             },

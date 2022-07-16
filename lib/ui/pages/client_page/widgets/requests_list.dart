@@ -13,28 +13,17 @@ class RequestsList extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Запросы',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Добавить',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-            ],
+          const Text(
+            'Запросы',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
           ),
           ..._buildList(),
         ],
