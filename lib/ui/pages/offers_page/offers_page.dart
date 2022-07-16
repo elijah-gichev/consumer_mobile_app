@@ -34,7 +34,13 @@ class _OffersPageState extends State<OffersPage> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: CustomAppBar(
-        title: '${_request.action} ${_request.object}',
+        title: Text(
+          '${_request.action} ${_request.object}',
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w),

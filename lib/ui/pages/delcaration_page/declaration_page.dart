@@ -19,13 +19,22 @@ class DeclarationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        title: 'Квартира',
+        title: Text(
+          'Квартира',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         showback: true,
       ),
       body: ListView(
         children: [
-          PhotoCards(
-            imageUrls: imageUrls,
+          SizedBox(
+            height: 280.h,
+            child: PhotoCards(
+              imageUrls: imageUrls,
+            ),
           ),
           SizedBox(
             height: 16.h,

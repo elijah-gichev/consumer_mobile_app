@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
+import 'package:bavito_mobile_app/ui/models/house.dart';
 import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/offer_item.dart';
 import 'package:bavito_mobile_app/ui/pages/clients_page/widgets/services_list.dart';
@@ -73,8 +74,11 @@ class _ClientsPageState extends State<ClientsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            PhotoCards(
-              imageUrls: urlList,
+            SizedBox(
+              height: 280.h,
+              child: PhotoCards(
+                imageUrls: urlList,
+              ),
             ),
             SizedBox(height: 15.h),
             Expanded(
@@ -140,7 +144,7 @@ class Offers extends StatelessWidget {
                 return OfferItem(
                   offer: offer,
                   onTap: () {
-                    context.router.push(const HousePageRoute());
+                    context.router.push(HousePageRoute(house: House.blank()));
                   },
                 );
               },

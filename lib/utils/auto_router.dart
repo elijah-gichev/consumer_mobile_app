@@ -8,6 +8,7 @@ import 'package:bavito_mobile_app/ui/pages/clients_page/clients_page.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/declaration_page.dart';
 import 'package:bavito_mobile_app/ui/pages/home_page/home_page.dart';
 import 'package:bavito_mobile_app/ui/pages/house_page/house_page.dart';
+import 'package:bavito_mobile_app/ui/pages/my_flats/my_flats_page.dart';
 import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
 
 @MaterialAutoRouter(
@@ -28,6 +29,10 @@ import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
         AutoRoute(
           path: 'offersPage',
           page: OffersPage,
+        ),
+        AutoRoute(
+          path: 'flatsPage',
+          page: MyFlatsPage,
         ),
       ],
     ),

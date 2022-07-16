@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
           const ClientsPageRoute(),
           ClientPageRoute(client: Client.blank()),
           const OffersPageRoute(),
+          MyFlatsPageRoute(),
         ],
         builder: (context, child, animation) {
           return Scaffold(
@@ -41,6 +42,12 @@ class _HomePageState extends State<HomePage> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.people),
                   label: 'Offers',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.g_mobiledata,
+                  ),
+                  label: 'Flats',
                 ),
               ],
               currentIndex: AutoTabsRouter.of(context).activeIndex,
