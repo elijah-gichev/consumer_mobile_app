@@ -13,17 +13,32 @@ class DashChatPage extends StatefulWidget {
 
 class _DashChatPageState extends State<DashChatPage> {
   final GlobalKey<DashChatState> _chatViewKey = GlobalKey<DashChatState>();
+  int i = 0;
 
   late List<ChatMessage> messages;
 
-  ChatMessage _switchAnswer1(FAQ faq) {
-    switch (faq) {
-      case FAQ.priceSegment:
-        return ChatMessage(text: 'ЦС1', user: ChatUser());
-      case FAQ.commercialState:
-        return ChatMessage(text: 'КН2', user: ChatUser());
-      case FAQ.familyPromotions:
-        return ChatMessage(text: 'ЦС2', user: ChatUser());
+  String _switchAnswer1(FAQ faq) => faq.string;
+  String _switchAnswer2(FAQ2 faq) => faq.string;
+  String _switchAnswer3(FAQ3 faq) => faq.string;
+  String _switchAnswer4(FAQ4 faq) => faq.string;
+
+  QuickReplies _generateReplies(dynamic faq) {}
+
+  ChatMessage _generateAnswer(int i, dynamic faq) {
+    switch (i) {
+      case 0:
+        return ChatMessage(
+            text: _switchAnswer1(faq as FAQ),
+            user: ChatUser(),
+            quickReplies: QuickReplies());
+      case 1:
+        return ChatMessage(text: _switchAnswer2(faq as FAQ2), user: ChatUser());
+      case 2:
+        return ChatMessage(text: _switchAnswer3(faq as FAQ3), user: ChatUser());
+      case 3:
+        return ChatMessage(text: _switchAnswer4(faq as FAQ4), user: ChatUser());
+      default:
+        return ChatMessage(text: 'Ошибка обработки', user: ChatUser());
     }
   }
 
@@ -31,9 +46,12 @@ class _DashChatPageState extends State<DashChatPage> {
   void initState() {
     messages = [
       ChatMessage(
-        text: "Доброго времени суток.\nВыберите интересующую вас сферу: ",
+        text: "Доброго времени суток. ",
         user: ChatUser(),
-        createdAt: DateTime.now(),
+      ),
+      ChatMessage(
+        text: "Выберите интересующую вас сферу: ",
+        user: ChatUser(),
         quickReplies: QuickReplies(
           values: <Reply>[
             Reply(
@@ -68,9 +86,13 @@ class _DashChatPageState extends State<DashChatPage> {
           messages = [
             ...messages,
             ChatMessage(
-              text:
-                  'Ошибка при обработке вашего запроса, повторите: ${lastMessage.text}',
-              user: lastMessage.user,
+              text: 'Ошибка при обработке ответа, пожалуйста, повторите запрос',
+              user: ChatUser(),
+              quickReplies: lastMessage.quickReplies,
+            ),
+            ChatMessage(
+              text: '${lastMessage.text}',
+              user: ChatUser(),
               quickReplies: lastMessage.quickReplies,
             ),
           ];
@@ -89,10 +111,16 @@ class _DashChatPageState extends State<DashChatPage> {
         onSend: onSend,
         onQuickReply: (Reply reply) {
           setState(() {
-            messages.add(ChatMessage(
-                text: reply.value, createdAt: DateTime.now(), user: user));
+            messages
+              ..add(ChatMessage(
+                text: reply.value,
+                user: user,
+              ))
+              ..add(ChatMessage(
+                text: _generateAnswer(i, reply.value),
+                user: ChatUser(),
+              ));
           });
-
           Timer(const Duration(milliseconds: 300), () {
             _chatViewKey.currentState!.scrollController.animateTo(
               _chatViewKey
@@ -148,11 +176,11 @@ extension StringParse2 on FAQ2 {
   String get string {
     switch (this) {
       case FAQ2.priceSegment:
-        return 'Ценовой сегмент';
+        return 'Ценовой сегмент2';
       case FAQ2.commercialState:
-        return 'Коммерческая недвижмость';
+        return 'Коммерческая недвижмость2';
       case FAQ2.familyPromotions:
-        return 'Предложения для семей';
+        return 'Предложения для семей2';
     }
   }
 }
@@ -161,11 +189,11 @@ extension StringParse3 on FAQ3 {
   String get string {
     switch (this) {
       case FAQ3.priceSegment:
-        return 'Ценовой сегмент';
+        return 'Ценовой сегмент3';
       case FAQ3.commercialState:
-        return 'Коммерческая недвижмость';
+        return 'Коммерческая недвижмость3';
       case FAQ3.familyPromotions:
-        return 'Предложения для семей';
+        return 'Предложения для семей3';
     }
   }
 }
@@ -174,11 +202,11 @@ extension StringParse4 on FAQ4 {
   String get string {
     switch (this) {
       case FAQ4.priceSegment:
-        return 'Ценовой сегмент';
+        return 'Ценовой сегмент4';
       case FAQ4.commercialState:
-        return 'Коммерческая недвижмость';
+        return 'Коммерческая недвижмость4';
       case FAQ4.familyPromotions:
-        return 'Предложения для семей';
+        return 'Предложения для семей4';
     }
   }
 }
