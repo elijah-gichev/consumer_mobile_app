@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../../data/repository/repository.dart';
+import '../../../di/locator.dart';
 import '../../models/graph.dart';
 
 class _SalesData {
@@ -77,7 +79,7 @@ class DownPart extends StatelessWidget {
                   );
                 }
                 return Container(
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxHeight: 150,
                   ),
                   child: SfCartesianChart(

@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../ui/models/details.dart';
+import '../../ui/models/flats.dart';
 import '../../ui/models/graph.dart';
 
 @singleton
@@ -34,10 +36,23 @@ class Repository {
         );
       },
     );
-    // .map<Graph>(
-    //   (e) => Graph.fromMap(e),
-    // )
-    // .toList();
+    return res;
+  }
+  Future<List<Flats>> getFilteredFlats(Details data) async {
+    final Response request = await dio.get(
+      dom + '/api/flat?cost_from=2500000&cost_to=4500000&room_count=2&height_from=2.5&repair=С ремонтом&floor_count_from=4&floor_count_to=12&view=На улицу&material=Монолитный',
+      options: Options(
+        headers: {
+          "token": token,
+        },
+      ),
+    );
+    final Map data = jsonDecode(request.toString());
+    final res = data["data"]
+        .map<Flats>(
+          (e) => Flats.fromMap(e),
+        )
+        .toList();
     return res;
   }
 }

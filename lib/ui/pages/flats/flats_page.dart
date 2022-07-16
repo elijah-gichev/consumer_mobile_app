@@ -7,6 +7,9 @@ import 'package:bavito_mobile_app/ui/widgets/offers_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../data/repository/flats_repository.dart';
+import '../../models/flats.dart';
+
 class FlatsPage extends StatefulWidget {
   const FlatsPage({Key? key}) : super(key: key);
 
@@ -72,8 +75,8 @@ class _OffersPageState extends State<FlatsPage> {
                 ),
               ],
             ),
-            FutureBuilder<List<Offer>>(
-              future: getIt<OffersRepository>().getOffers(),
+            FutureBuilder<List<Flats>>(
+              future: getIt<FlatsRepository>().getFlats(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
