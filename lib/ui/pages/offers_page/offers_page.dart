@@ -7,7 +7,6 @@ import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:bavito_mobile_app/ui/widgets/offers_list.dart';
 import 'package:bavito_mobile_app/ui/pages/offers_page/widgets/request_card.dart';
-import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -57,7 +56,7 @@ class _OffersPageState extends State<OffersPage> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {
-                    context.router.push(DeclarationPageRoute());
+                    // context.router.push(DeclarationPageRoute());
                   },
                   child: const Text(
                     'Добавить',
