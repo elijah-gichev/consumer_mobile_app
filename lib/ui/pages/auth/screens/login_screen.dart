@@ -124,13 +124,13 @@ class LoginScreentView extends StatelessWidget {
                   SizedBox(
                     height: 27.h,
                   ),
-                  LoginButton(
-                    text: 'Войти как гость',
-                    onPressed: () {
-                      context.router.push(const HomePageRoute());
-                    },
-                    isLoading: false,
-                  ),
+                  // LoginButton(
+                  //   text: 'Войти как гость',
+                  //   onPressed: () {
+                  //     context.router.push(const HomePageRoute());
+                  //   },
+                  //   isLoading: false,
+                  // ),
                 ],
               );
             }

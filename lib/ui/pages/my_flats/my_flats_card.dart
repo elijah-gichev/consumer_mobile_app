@@ -2,8 +2,10 @@ import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../models/flats.dart';
+
 class MyFlatsCard extends StatelessWidget {
-  final Offer offer;
+  final Flats offer;
   final VoidCallback onTap;
   final bool isDone;
 
@@ -81,13 +83,7 @@ class MyFlatsCard extends StatelessWidget {
                                 color: Colors.grey,
                               ),
                             ),
-                      Text(
-                        offer.date,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey,
-                        ),
-                      ),
+                      
                     ],
                   ),
                 ],

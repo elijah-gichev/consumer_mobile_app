@@ -98,18 +98,18 @@ class HousePage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                   child: Row(
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         'Особенности',
                         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text('См. все'),
-                      ),
+                      Spacer(),
+                      // TextButton(
+                      //   onPressed: () {},
+                      //   child: const Text('См. все'),
+                      // ),
                     ],
                   ),
                 ),

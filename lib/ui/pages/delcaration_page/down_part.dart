@@ -1,7 +1,11 @@
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/description.dart';
+import 'package:bavito_mobile_app/data/repository/repository.dart';
+import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../models/graph.dart';
 
 class _SalesData {
   _SalesData(this.year, this.sales);
@@ -57,25 +61,45 @@ class DownPart extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          SfCartesianChart(
-            primaryXAxis: CategoryAxis(),
-            // Chart title
-            title: ChartTitle(text: 'Half yearly sales analysis'),
-            // Enable tooltip
-            tooltipBehavior: TooltipBehavior(enable: true),
-            series: <ChartSeries<_SalesData, String>>[
-              LineSeries<_SalesData, String>(
-                dataSource: data,
-                xValueMapper: (_SalesData sales, _) => sales.year,
-                yValueMapper: (_SalesData sales, _) => sales.sales,
-                name: 'Sales',
-                // Enable data label
-                dataLabelSettings: const DataLabelSettings(
-                  isVisible: true,
-                ),
-              )
-            ],
-          ),
+          FutureBuilder<List<Graph>>(
+              future: getIt<Repository>().getGraph(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text(
+                      'Что-то пошло не так!',
+                    ),
+                  );
+                }
+                return Container(
+                  constraints: BoxConstraints(
+                    maxHeight: 150,
+                  ),
+                  child: SfCartesianChart(
+                    primaryXAxis: CategoryAxis(),
+                    // Chart title
+                    // Enable tooltip
+                    // tooltipBehavior: TooltipBehavior(enable: true),
+                    series: <ChartSeries<Graph, String>>[
+                      LineSeries<Graph, String>(
+                        dataSource: snapshot.data!,
+                        xValueMapper: (Graph graph, _) => graph.year,
+                        yValueMapper: (Graph graph, _) => graph.coord,
+                        name: 'Sales',
+                        // Enable data label
+                        // dataLabelSettings: const DataLabelSettings(
+                        //   isVisible: true,
+                        // ),
+                      )
+                    ],
+                  ),
+                );
+              }),
         ],
       ),
     );
