@@ -27,7 +27,7 @@ class _ClientPageState extends State<ClientPage> {
     ),
     Request(
       location:
-          'Отключился один из источников питания,\nперехожу на резервный генератор         ',
+          'Отключился один из источников питания,\nперехожу на резервный генератор',
       minPrice: '',
       maxPrice: '',
       action: 'Электроснабжение',
@@ -37,7 +37,7 @@ class _ClientPageState extends State<ClientPage> {
     ),
     Request(
       location:
-          'Выявлены неполадки в работе     \nсчётчика отправляю запрос в ЖКХ                ',
+          'Выявлены неполадки в работе     \nсчётчика отправляю запрос в ЖКХ',
       minPrice: '',
       maxPrice: '',
       action: 'Водоснабжение',
