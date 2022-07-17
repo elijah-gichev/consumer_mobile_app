@@ -30,6 +30,9 @@ class ListTileOffer extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              width: 5.w,
+            ),
             Container(
               height: 100.h,
               width: 100.w,
