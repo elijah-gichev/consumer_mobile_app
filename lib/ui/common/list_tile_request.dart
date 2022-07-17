@@ -1,5 +1,6 @@
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListTileRequest extends StatelessWidget {
   final Request request;
@@ -32,7 +33,7 @@ class ListTileRequest extends StatelessWidget {
                 color: Colors.grey[200],
               ),
               child: Icon(
-                request.object.toLowerCase() == 'дом' ? Icons.home_outlined : Icons.location_city_outlined,
+                request.iconData ?? Icons.location_city_outlined,
                 color: Colors.black,
                 size: 25,
               ),
@@ -44,11 +45,14 @@ class ListTileRequest extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    '${request.action} ${request.object}',
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      '${request.action}${request.object}',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -57,30 +61,33 @@ class ListTileRequest extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: Text(
-                          request.location,
-                          style: const TextStyle(fontSize: 15),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
+                      Flexible(
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text(
+                            request.location,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: request.color,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 20,
-                        color: Colors.grey,
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    '${request.minPrice} ₽ - ${request.maxPrice} ₽',
-                    style: const TextStyle(fontSize: 15),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
+                  // const SizedBox(
+                  //   height: 3,
+                  // ),
+                  // Text(
+                  //   '${request.minPrice}${request.maxPrice}',
+                  //   style: TextStyle(
+                  //     fontSize: 14.sp,
+                  //     color: request.color,
+                  //   ),
+                  //   overflow: TextOverflow.ellipsis,
+                  //   maxLines: 1,
+                  // ),
                 ],
               ),
             ),
