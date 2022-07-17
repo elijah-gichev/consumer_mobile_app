@@ -88,6 +88,7 @@ class _ClientsPageState extends State<ClientsPage> {
               height: 280.h,
               child: PhotoCards(
                 imageUrls: urlList,
+                changeOrder: controlSum == 1,
               ),
             ),
             SizedBox(height: 15.h),

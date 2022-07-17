@@ -48,6 +48,7 @@ class DeclarationPage extends StatelessWidget {
             height: 300,
             child: PhotoCards(
               imageUrls: imageUrls,
+              changeOrder: false,
             ),
           ),
           SizedBox(

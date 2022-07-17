@@ -13,7 +13,7 @@ class OfferItem extends StatelessWidget {
   }) : super(key: key);
 
   String imagePath(int index) {
-    final num = (index) % 4;
+    final num = 1 + (index % 4);
     final path = "assets/images/house$num.jpg";
     print(path);
     return path;
