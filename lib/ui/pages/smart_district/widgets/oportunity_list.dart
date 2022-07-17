@@ -11,6 +11,16 @@ class OportunityList extends StatelessWidget {
       children: const [
         SizedBox(width: 8),
         OportunityItem(
+          imgUrl: 'assets/icons/gkh.jpg',
+          title: 'ЖКХ',
+        ),
+        SizedBox(width: 8),
+        OportunityItem(
+          imgUrl: 'assets/icons/homoPhone.jpg',
+          title: 'Домофон',
+        ),
+        SizedBox(width: 8),
+        OportunityItem(
           imgUrl: 'assets/images/special_offers1.png',
           title: 'Бесплатная доставка',
         ),
