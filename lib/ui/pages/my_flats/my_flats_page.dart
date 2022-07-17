@@ -69,7 +69,7 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
           : Container(
               child: const Center(
                 child: Text(
-                  "У вас нет квартир ((((((((",
+                  "У вас нет квартир!",
                 ),
               ),
             ),

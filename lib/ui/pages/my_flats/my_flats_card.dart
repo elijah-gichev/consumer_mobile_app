@@ -30,6 +30,13 @@ class MyFlatsCard extends StatelessWidget {
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Colors.white,
+          boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 2,
+                offset: Offset(1, 2),
+              ),
+            ]
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +90,6 @@ class MyFlatsCard extends StatelessWidget {
                                 color: Colors.grey,
                               ),
                             ),
-                      
                     ],
                   ),
                 ],
