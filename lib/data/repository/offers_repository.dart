@@ -53,6 +53,7 @@ class OffersRepository {
     final res = data["data"].map<Offer>(
       (e) => Offer.fromMap(e),
     ).toList();
+    
     return res ;
     // } catch (e) {
     // print(e.toString());

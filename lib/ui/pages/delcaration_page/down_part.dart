@@ -68,6 +68,9 @@ class DownPart extends StatelessWidget {
               fontSize: 18,
             ),
           ),
+          SizedBox(
+            height: 10.h,
+          ),
           FutureBuilder<List<Graph>>(
               future: getIt<Repository>().getGraph(),
               builder: (context, snapshot) {
@@ -85,7 +88,7 @@ class DownPart extends StatelessWidget {
                 }
                 return Container(
                   constraints: const BoxConstraints(
-                    maxHeight: 150,
+                    maxHeight: 250,
                   ),
                   child: SfCartesianChart(
                     primaryXAxis: CategoryAxis(),
@@ -96,12 +99,12 @@ class DownPart extends StatelessWidget {
                       LineSeries<Graph, String>(
                         dataSource: snapshot.data!,
                         xValueMapper: (Graph graph, _) => graph.year,
-                        yValueMapper: (Graph graph, _) => graph.coord,
+                        yValueMapper: (Graph graph, _) => num.parse((graph.coord / 100000).toStringAsFixed(2)),
                         name: 'Sales',
                         // Enable data label
-                        // dataLabelSettings: const DataLabelSettings(
-                        //   isVisible: true,
-                        // ),
+                        dataLabelSettings: const DataLabelSettings(
+                          isVisible: true,
+                        ),
                       )
                     ],
                   ),
