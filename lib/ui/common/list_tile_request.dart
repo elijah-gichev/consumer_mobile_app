@@ -50,7 +50,7 @@ class ListTileRequest extends StatelessWidget {
                     child: Text(
                       '${request.action}${request.object}',
                       style: TextStyle(
-                        fontSize: 10.sp,
+                        fontSize: 13.sp,
                         color: Colors.grey,
                       ),
                     ),

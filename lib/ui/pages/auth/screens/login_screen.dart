@@ -54,7 +54,11 @@ class LoginScreentView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const LoginTitle(),
+        //const LoginTitle(),
+        SizedBox(
+          height: 60.h,
+        ),
+        Image.asset('assets/icons/logo.png'),
         SizedBox(
           height: 64.h,
         ),
@@ -80,25 +84,8 @@ class LoginScreentView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 36.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   SizedBox(
-                    height: 10.h,
-                  ),
-                  Text(
-                    'Welcome',
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 47.h,
+                    height: 20.h,
                   ),
                   LoginInput(phoneNumberController: phoneNumberController),
                   SizedBox(
