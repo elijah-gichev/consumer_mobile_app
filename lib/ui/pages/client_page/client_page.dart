@@ -36,7 +36,8 @@ class _ClientPageState extends State<ClientPage> {
       color: Colors.yellow[800],
     ),
     Request(
-      location: 'Выявлены неполадки в работе\nсчётчика отправляю запрос в ЖКХ',
+      location:
+          'Выявлены неполадки в работе     \nсчётчика отправляю запрос в ЖКХ',
       minPrice: '',
       maxPrice: '',
       action: 'Водоснабжение',
