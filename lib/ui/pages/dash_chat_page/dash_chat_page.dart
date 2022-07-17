@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bavito_mobile_app/data/repository/dash_chat_repository.dart';
+import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:dash_chat/dash_chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -53,8 +54,7 @@ class _DashChatPageState extends State<DashChatPage> {
 
     void onSend(ChatMessage message) {
       final ChatMessage lastMessage = messages.last;
-      final bool? isExpected = lastMessage.quickReplies?.values
-          ?.any((element) => element.value == message.text);
+      final bool? isExpected = lastMessage.quickReplies?.values?.any((element) => element.value == message.text);
       setState(() {
         if (!(isExpected != null && isExpected)) {
           messages = [
@@ -75,8 +75,14 @@ class _DashChatPageState extends State<DashChatPage> {
     }
 
     return Scaffold(
-      appBar: const CupertinoNavigationBar(
-        middle: Text('Dash Chat'),
+      appBar: const CustomAppBar(
+        title: Text(
+          'Чат-бот',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.only(bottom: 35.0),
@@ -119,18 +125,13 @@ class _DashChatPageState extends State<DashChatPage> {
                   text: DashChatRepository.repliesMap[i]?.message,
                   user: ChatUser(),
                   quickReplies: QuickReplies(
-                    values: DashChatRepository.repliesMap[i]?.replies
-                        .map((e) => Reply(
-                            title: e.replyMessage, value: e.id.toString()))
-                        .toList(),
+                    values: DashChatRepository.repliesMap[i]?.replies.map((e) => Reply(title: e.replyMessage, value: e.id.toString())).toList(),
                   ),
                 ));
             });
             Timer(const Duration(milliseconds: 300), () {
               _chatViewKey.currentState?.scrollController.animateTo(
-                _chatViewKey.currentState?.scrollController.position
-                        .maxScrollExtent ??
-                    0,
+                _chatViewKey.currentState?.scrollController.position.maxScrollExtent ?? 0,
                 curve: Curves.easeOut,
                 duration: const Duration(milliseconds: 300),
               );

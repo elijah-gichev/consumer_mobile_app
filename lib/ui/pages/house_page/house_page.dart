@@ -5,6 +5,7 @@ import 'package:bavito_mobile_app/ui/pages/house_page/widgets/features_list.dart
 import 'package:bavito_mobile_app/ui/pages/house_page/widgets/photo_cards.dart';
 import 'package:bavito_mobile_app/ui/pages/house_page/widgets/position_card.dart';
 import 'package:bavito_mobile_app/utils/auto_router.gr.dart';
+import 'package:bavito_mobile_app/utils/date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -70,7 +71,7 @@ class HousePage extends StatelessWidget {
                         HouseTile(
                           leadingIcon: Icons.house,
                           title: 'Квартиры',
-                          subtitle: 'от 5.8 млн. Р',
+                          subtitle: 'от ${house.minFlatPrice} млн. Р',
                           onTap: () {
                             context.router.push(const FlatsPageRoute());
                           },
@@ -82,7 +83,7 @@ class HousePage extends StatelessWidget {
                         HouseTile(
                           leadingIcon: Icons.local_shipping,
                           title: 'Ход строительства',
-                          subtitle: 'Обновлено 1 июля 2022',
+                          subtitle: 'Обновлено ${DateFormater.formatDate(house.updateDate)}',
                           onTap: () {
                             context.router.push(const ConstructionProgressPageRoute());
                           },

@@ -1,4 +1,5 @@
 import 'package:bavito_mobile_app/ui/models/details.dart';
+import 'package:bavito_mobile_app/ui/models/flats.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/category.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/details_tile.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/widgets/wrappers/string_paser.dart';
@@ -8,22 +9,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Description extends StatelessWidget {
-  Description({Key? key}) : super(key: key);
+  final Flats flat;
 
-  final details = Details(
-    city: 'Краснодар',
-    costMin: 2.5,
-    costMax: 4.5,
-    layout: Layout.studio,
-    ceilingHeightMin: 2.5,
-    ceilingHeightMax: -4.5,
-    isRenovated: true,
-    floorMin: 4,
-    floorMax: 7,
-    windowView: View.outside,
-    houseType: [HouseType.monolithic, HouseType.block, HouseType.brick],
-    parking: [Parking.ground],
-  );
+  late final Details details;
+  Description({required this.flat, Key? key}) : super(key: key) {
+    details = Details(
+      city: 'Краснодар',
+      costMin: double.parse(flat.price.toStringAsFixed(2)),
+      costMax: double.parse((flat.price + 0.5).toStringAsFixed(2)),
+      layout: Layout.studio,
+      ceilingHeightMin: 2.5,
+      ceilingHeightMax: -4.5,
+      isRenovated: true,
+      floorMin: 4,
+      floorMax: 7,
+      windowView: View.outside,
+      houseType: [HouseType.monolithic, HouseType.block, HouseType.brick],
+      parking: [Parking.ground],
+    );
+  }
+
   String get _parseCost => StringParser.parseSelectedNumbers(suffix: 'млн', valueMin: details.costMin, valueMax: details.costMax);
 
   String get _parseCeilingHeight => StringParser.parseSelectedNumbers(suffix: 'м', valueMin: details.ceilingHeightMin, valueMax: details.ceilingHeightMax);

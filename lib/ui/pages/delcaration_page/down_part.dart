@@ -1,3 +1,4 @@
+import 'package:bavito_mobile_app/ui/models/flats.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/widgets/description.dart';
 import 'package:bavito_mobile_app/data/repository/repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
@@ -20,15 +21,17 @@ class DownPart extends StatelessWidget {
   List<_SalesData> data = [_SalesData('Jan', 35), _SalesData('Feb', 28), _SalesData('Mar', 34), _SalesData('Apr', 32), _SalesData('May', 40)];
 
   final String description;
+  final Flats flat;
   DownPart({
     Key? key,
     required this.description,
+    required this.flat,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
       child: Column(
         children: [
           const Text(
@@ -52,7 +55,9 @@ class DownPart extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          Description(),
+          Description(
+            flat: flat,
+          ),
           SizedBox(
             height: 20.h,
           ),

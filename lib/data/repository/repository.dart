@@ -41,8 +41,8 @@ class Repository {
 
   Future<List<Flats>> getFilteredFlats(Details details) async {
     final repair = details.isRenovated ? 'С ремонтом' : 'Без ремонта';
-    final costFrom = details.costMin;
-    final costTo = details.costMax;
+    final costFrom = details.costMin.round(); // TODO почему-то принимает только целые
+    final costTo = details.costMax.round();
     final roomCount = details.layout.index;
     final heightFrom = details.ceilingHeightMin;
     final floorCountFrom = details.floorMin;
