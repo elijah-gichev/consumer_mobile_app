@@ -18,6 +18,8 @@ class House {
 
   final ConstructionProgress constructionProgress;
 
+  final List<String> cardTitles;
+
   House({
     required this.address,
     required this.title,
@@ -26,6 +28,7 @@ class House {
     required this.updateDate,
     required this.constructionProgress,
     required this.id,
+    required this.cardTitles,
   });
 
   static final List<Flats> _offers = [
@@ -67,11 +70,20 @@ class House {
       minFlatPrice: 5.8,
       updateDate: DateTime.now(),
       id: 1,
+      cardTitles: ['Цена, Удобство, Скорость'],
     );
   }
 
-  House copyWith(
-      {String? address, String? title, List<Flats>? flats, double? minFlatPrice, DateTime? updateDate, ConstructionProgress? constructionProgress, int? id}) {
+  House copyWith({
+    String? address,
+    String? title,
+    List<Flats>? flats,
+    double? minFlatPrice,
+    DateTime? updateDate,
+    ConstructionProgress? constructionProgress,
+    int? id,
+    List<String>? cardTitles,
+  }) {
     return House(
       address: address ?? this.address,
       title: title ?? this.title,
@@ -80,6 +92,7 @@ class House {
       updateDate: updateDate ?? this.updateDate,
       constructionProgress: constructionProgress ?? this.constructionProgress,
       id: id ?? this.id,
+      cardTitles: cardTitles ?? this.cardTitles,
     );
   }
 
@@ -118,7 +131,10 @@ class House {
     };
   }
 
-  factory House.fromMap(Map<String, dynamic> map) {
+  factory House.fromMap(
+    Map<String, dynamic> map,
+    List<String> cardTitles,
+  ) {
     return House(
       address: map['address'] ?? '',
       title: map['title'] ?? '',
@@ -127,12 +143,13 @@ class House {
       updateDate: DateTime.fromMillisecondsSinceEpoch(map['updated_at'] * 1000),
       constructionProgress: ConstructionProgress.blank(),
       id: map['id'],
+      cardTitles: cardTitles,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory House.fromJson(String source) => House.fromMap(json.decode(source));
+  // factory House.fromJson(String source) => House.fromMap(json.decode(source));
 }
 
 class ConstructionProgress {

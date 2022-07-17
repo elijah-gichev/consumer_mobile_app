@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bavito_mobile_app/data/repository/control_sum_repository.dart';
 import 'package:bavito_mobile_app/ui/models/house.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -88,10 +89,10 @@ class Repository {
     return res;
   }
 
-  Future<List<House>> getHouses() async {
+  Future<List<House>> getHouses(int controlSum) async {
     // try {
     final Response request = await dio.get(
-      dom + '/api/complex',
+      dom + '/api/complex?control_sum=$controlSum',
       options: Options(
         headers: {
           "token": token,
@@ -99,9 +100,13 @@ class Repository {
       ),
     );
     final data = jsonDecode(request.toString());
+    final cardTitles = <String>[];
+    cardTitles.add(data['card1']);
+    cardTitles.add(data['card2']);
+    cardTitles.add(data['card3']);
     final res = data["data"]
         .map<House>(
-          (e) => House.fromMap(e),
+          (e) => House.fromMap(e, cardTitles),
         )
         .toList();
     return res;

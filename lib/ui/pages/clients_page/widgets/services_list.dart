@@ -1,8 +1,33 @@
+import 'package:bavito_mobile_app/data/repository/control_sum_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ServicesList extends StatelessWidget {
-  const ServicesList({Key? key}) : super(key: key);
+class ServicesList extends StatefulWidget {
+  final List<String> cardTitles;
+  final int controlSum;
+  const ServicesList({required this.controlSum, required this.cardTitles, Key? key}) : super(key: key);
+
+  @override
+  State<ServicesList> createState() => _ServicesListState();
+}
+
+class _ServicesListState extends State<ServicesList> {
+  late final List<Color> storyColors1;
+  late final List<Color> storyColors2;
+  List<Color> storyColors = [];
+
+  @override
+  void initState() {
+    storyColors1 = [Colors.green[400]!, Colors.orange, Colors.red[400]!];
+    storyColors2 = [Colors.blue, Colors.deepPurpleAccent[200]!, Colors.deepOrangeAccent];
+
+    if (widget.controlSum == 0) {
+      storyColors = storyColors1;
+    } else {
+      storyColors = storyColors2;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,18 +36,18 @@ class ServicesList extends StatelessWidget {
       children: [
         const SizedBox(width: 8),
         StoryItem(
-          title: 'Экскурсия',
-          backgroundColor: Colors.green[400]!,
-        ),
-        const SizedBox(width: 8),
-        const StoryItem(
-          backgroundColor: Colors.orange,
-          title: 'Новые проекты и корпуса',
+          title: widget.cardTitles[0], //'Экскурсия',
+          backgroundColor: storyColors[0],
         ),
         const SizedBox(width: 8),
         StoryItem(
-          backgroundColor: Colors.red[400]!,
-          title: 'Условия покупки',
+          backgroundColor: storyColors[1],
+          title: widget.cardTitles[1], //'Новые проекты и корпуса',
+        ),
+        const SizedBox(width: 8),
+        StoryItem(
+          backgroundColor: storyColors[2],
+          title: widget.cardTitles[2], //'Условия покупки',
         ),
         const SizedBox(width: 8),
         const StoryItem(
@@ -33,12 +58,6 @@ class ServicesList extends StatelessWidget {
         const StoryItem(
           imgPath: 'assets/images/house5.jpg',
           title: 'Новинка!',
-        ),
-        const SizedBox(width: 8),
-        StoryItem(
-          backgroundColor: Colors.grey[200]!,
-          title: 'Экскурсия',
-          titleColor: Colors.black,
         ),
         const SizedBox(width: 8),
       ],

@@ -60,6 +60,13 @@ class ServiceRepository {
         cashback: 10,
         imgPath: 'assets/images/serviceImg6.jpg',
       ),
+      Service(
+        title: 'Кенгуру',
+        description: 'Магазин детской одежды',
+        rating: 5.0,
+        cashback: 10,
+        imgPath: 'assets/images/serviceImg7.jpg',
+      ),
     ];
   }
 }

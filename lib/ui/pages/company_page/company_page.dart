@@ -1,3 +1,4 @@
+import 'package:bavito_mobile_app/data/repository/control_sum_repository.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/models/service.dart';
 import 'package:bavito_mobile_app/ui/pages/company_page/widgets/list_tile_company.dart';
@@ -29,7 +30,9 @@ class CompanyPage extends StatelessWidget {
               (s) {
                 return ListTileCompany(
                   service: s,
-                  onTap: () {},
+                  onTap: () {
+                    ControlSumRepository.controller.add(1);
+                  },
                 );
               },
             ).toList()

@@ -55,7 +55,7 @@ class OfferItem extends StatelessWidget {
             ),
             const SizedBox(height: 2),
             Text(
-              'от ' + offer.minFlatPrice.toStringAsFixed(2) + 'млн. ₽',
+              'от ' + offer.minFlatPrice.toStringAsFixed(2) + ' млн. ₽',
               style: const TextStyle(
                 fontSize: 13,
                 color: Colors.grey,

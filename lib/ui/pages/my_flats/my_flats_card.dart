@@ -28,19 +28,21 @@ class MyFlatsCard extends StatelessWidget {
         ),
         height: 120.h,
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: Colors.white,
-          boxShadow: [
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: Colors.white,
+            boxShadow: [
               BoxShadow(
                 color: Colors.grey,
                 blurRadius: 2,
                 offset: Offset(1, 2),
               ),
-            ]
-        ),
+            ]),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              width: 8.w,
+            ),
             Container(
               height: 100.h,
               width: 100.w,

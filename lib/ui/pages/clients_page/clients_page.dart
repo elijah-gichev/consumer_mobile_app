@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
+import 'package:bavito_mobile_app/data/repository/control_sum_repository.dart';
 import 'package:bavito_mobile_app/data/repository/repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
@@ -44,6 +44,8 @@ class _ClientsPageState extends State<ClientsPage> {
 
   final TextEditingController _searchController = TextEditingController();
 
+  int controlSum = 0;
+
   void _searchClients() {
     String query = _searchController.text.toLowerCase();
     if (query.isNotEmpty) {
@@ -63,6 +65,13 @@ class _ClientsPageState extends State<ClientsPage> {
   void initState() {
     _searchController.addListener(_searchClients);
     _filteredClients = _clients;
+
+    ControlSumRepository.controller.stream.listen((val) {
+      setState(() {
+        controlSum = val;
+      });
+    });
+
     super.initState();
   }
 
@@ -82,27 +91,53 @@ class _ClientsPageState extends State<ClientsPage> {
               ),
             ),
             SizedBox(height: 15.h),
-            Expanded(
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Container(
-                      height: 110.h,
-                      child: const ServicesList(),
+            FutureBuilder<List<House>>(
+              future: getIt<Repository>().getHouses(controlSum),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text(
+                      'Что-то пошло не так!',
                     ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 15.h,
-                        horizontal: 15,
-                      ),
-                      child: const Offers(),
+                  );
+                } else if (snapshot.hasData) {
+                  final offers = snapshot.data!;
+
+                  return Expanded(
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child: Container(
+                            height: 110.h,
+                            child: ServicesList(
+                              cardTitles: offers[0].cardTitles,
+                              controlSum: controlSum,
+                            ),
+                          ),
+                        ),
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 15.h,
+                              horizontal: 15,
+                            ),
+                            child: Offers(offers),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  );
+                }
+
+                return const SizedBox();
+              },
+            )
           ],
         ),
       ),
@@ -111,50 +146,28 @@ class _ClientsPageState extends State<ClientsPage> {
 }
 
 class Offers extends StatelessWidget {
-  const Offers({Key? key}) : super(key: key);
+  final List<House> offers;
+  const Offers(this.offers, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<House>>(
-      future: getIt<Repository>().getHouses(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
+    return GridView.count(
+      mainAxisSpacing: 20.h,
+      crossAxisSpacing: 15.w,
+      shrinkWrap: true,
+      crossAxisCount: 2,
+      childAspectRatio: 0.95,
+      physics: const NeverScrollableScrollPhysics(),
+      children: offers.map(
+        (offer) {
+          return OfferItem(
+            offer: offer,
+            onTap: () {
+              context.router.push(HousePageRoute(house: offer));
+            },
           );
-        }
-
-        if (snapshot.hasError) {
-          return const Center(
-            child: Text(
-              'Что-то пошло не так!',
-            ),
-          );
-        } else if (snapshot.hasData) {
-          final offers = snapshot.data!;
-
-          return GridView.count(
-            mainAxisSpacing: 20.h,
-            crossAxisSpacing: 15.w,
-            shrinkWrap: true,
-            crossAxisCount: 2,
-            childAspectRatio: 0.95,
-            physics: const NeverScrollableScrollPhysics(),
-            children: offers.map(
-              (offer) {
-                return OfferItem(
-                  offer: offer,
-                  onTap: () {
-                    context.router.push(HousePageRoute(house: offer));
-                  },
-                );
-              },
-            ).toList(),
-          );
-        }
-
-        return const SizedBox();
-      },
+        },
+      ).toList(),
     );
   }
 }
