@@ -52,6 +52,8 @@ dependencies:
 
   #multi_picker
   multi_select_flutter: ^4.1.2
+  #chat_bot
+  dash_chat: ^1.1.16
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -39,6 +39,7 @@ class ListTileOffer extends StatelessWidget {
                   image: Image.asset(offer.image).image,
                   fit: BoxFit.fill,
                 ),
+                borderRadius: BorderRadius.circular(12.0.r),
               ),
             ),
             SizedBox(
@@ -70,7 +71,7 @@ class ListTileOffer extends StatelessWidget {
                         color: Colors.yellow[600],
                         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
                         child: Text(
-                          offer.price.round().toString() + "млн" + ' ₽',
+                          offer.price.toStringAsFixed(2) + " млн" + ' ₽',
                           style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,

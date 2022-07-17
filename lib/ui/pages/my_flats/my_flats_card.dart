@@ -45,6 +45,7 @@ class MyFlatsCard extends StatelessWidget {
               height: 100.h,
               width: 100.w,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0.r),
                 color: Colors.grey[200],
                 image: DecorationImage(
                   image: Image.asset(offer.image).image,

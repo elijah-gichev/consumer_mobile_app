@@ -51,7 +51,7 @@ class DeclarationPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 5.h,
+            height: 15.h,
           ),
           Padding(
             padding: EdgeInsets.symmetric(
@@ -69,7 +69,7 @@ class DeclarationPage extends StatelessWidget {
             height: 5.h,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0.w),
+            padding: const EdgeInsets.only(left: 15.0),
             child: Row(
               children: [
                 const Icon(
@@ -100,7 +100,7 @@ class DeclarationPage extends StatelessWidget {
                   horizontal: 5,
                 ),
                 child: Text(
-                flat.price.round().toString() + " млн" + ' ₽',
+                  flat.price.toStringAsFixed(2) + " млн" + ' ₽',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -181,6 +181,7 @@ class DeclarationPage extends StatelessWidget {
           DownPart(
             description:
                 "Дом расположен в ЗЖМ, мкр Левенцовский, вблизи остановки общественного транспорта. Рядом расположены гипермаркеты 'Магнит', 'Пятерочка', 'Лента', 'Метро', отделение 'Сбербанка'. В районе работают 6 детских садов, 1 школа. Есть собственная управляющая ко...",
+            flat: flat,
           ),
           Container(
             child: SizedBox(

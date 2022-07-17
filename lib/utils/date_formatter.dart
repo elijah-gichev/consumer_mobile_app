@@ -6,11 +6,6 @@ class DateFormater {
     return formatter.format(date);
   }
 
-  // static String formatDMMMMYYYY(DateTime date) {
-  //   final DateFormat formatter = DateFormat.();
-  //   return formatter.format(date);
-  // }
-
   static String formatDate(DateTime date) {
     final DateFormat formatter = DateFormat.yMMMMd();
     return formatter.format(date);

@@ -24,12 +24,12 @@ import '../ui/pages/clients_page/clients_page.dart' as _i9;
 import '../ui/pages/company_page/company_page.dart' as _i7;
 import '../ui/pages/construction_progress/construction_progress_page.dart'
     as _i6;
+import '../ui/pages/dash_chat_page/dash_chat_page.dart' as _i11;
 import '../ui/pages/delcaration_page/declaration_page.dart' as _i3;
 import '../ui/pages/flats/flats_page.dart' as _i5;
 import '../ui/pages/home_page/home_page.dart' as _i1;
 import '../ui/pages/house_page/house_page.dart' as _i4;
 import '../ui/pages/my_flats/my_flats_page.dart' as _i12;
-import '../ui/pages/offers_page/offers_page.dart' as _i11;
 import '../ui/pages/smart_district/smart_district_page.dart' as _i13;
 
 class AppRouter extends _i14.RootStackRouter {
@@ -89,9 +89,9 @@ class AppRouter extends _i14.RootStackRouter {
           routeData: routeData,
           child: _i10.ClientPage(args.client, key: args.key));
     },
-    OffersPageRoute.name: (routeData) {
+    DashChatPageRoute.name: (routeData) {
       return _i14.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.OffersPage());
+          routeData: routeData, child: const _i11.DashChatPage());
     },
     MyFlatsPageRoute.name: (routeData) {
       final args = routeData.argsAs<MyFlatsPageRouteArgs>(
@@ -116,8 +116,8 @@ class AppRouter extends _i14.RootStackRouter {
               path: 'clientsPage', parent: HomePageRoute.name),
           _i14.RouteConfig(ClientPageRoute.name,
               path: 'clientPage', parent: HomePageRoute.name),
-          _i14.RouteConfig(OffersPageRoute.name,
-              path: 'offersPage', parent: HomePageRoute.name),
+          _i14.RouteConfig(DashChatPageRoute.name,
+              path: 'dashChatPage', parent: HomePageRoute.name),
           _i14.RouteConfig(MyFlatsPageRoute.name,
               path: 'myFlatsPage', parent: HomePageRoute.name),
           _i14.RouteConfig(SmartDistrictPageRoute.name,
@@ -303,11 +303,12 @@ class ClientPageRouteArgs {
 }
 
 /// generated route for
-/// [_i11.OffersPage]
-class OffersPageRoute extends _i14.PageRouteInfo<void> {
-  const OffersPageRoute() : super(OffersPageRoute.name, path: 'offersPage');
+/// [_i11.DashChatPage]
+class DashChatPageRoute extends _i14.PageRouteInfo<void> {
+  const DashChatPageRoute()
+      : super(DashChatPageRoute.name, path: 'dashChatPage');
 
-  static const String name = 'OffersPageRoute';
+  static const String name = 'DashChatPageRoute';
 }
 
 /// generated route for

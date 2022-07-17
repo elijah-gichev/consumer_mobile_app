@@ -46,7 +46,6 @@ class _ClientPageState extends State<ClientPage> {
         title: Text(
           'Профиль',
           style: TextStyle(
-            fontSize: 15,
             fontWeight: FontWeight.w400,
           ),
         ),

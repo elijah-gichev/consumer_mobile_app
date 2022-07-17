@@ -10,6 +10,10 @@ class House {
   final String description;
   final List<Flats> flats;
 
+  final double minFlatPrice;
+
+  final DateTime updateDate;
+
   final ConstructionProgress constructionProgress;
   House({
     required this.description,
@@ -17,6 +21,8 @@ class House {
     required this.address,
     required this.flats,
     required this.constructionProgress,
+    required this.minFlatPrice,
+    required this.updateDate,
   });
 
   static final List<Flats> _offers = [
@@ -51,12 +57,13 @@ class House {
 
   factory House.blank() {
     return House(
-      description: 'Новый дом на западе Краснодара',
-      name: 'Открытый парк',
-      address: 'ул. Ветеранов, Краснодар, Краснодарский край',
-      flats: _offers,
-      constructionProgress: ConstructionProgress.blank(),
-    );
+        description: 'Новый дом на западе Краснодара',
+        name: 'Открытый парк',
+        address: 'ул. Ветеранов, Краснодар, Краснодарский край',
+        flats: _offers,
+        constructionProgress: ConstructionProgress.blank(),
+        minFlatPrice: 5.8,
+        updateDate: DateTime.now());
   }
 
   House copyWith({
@@ -65,6 +72,8 @@ class House {
     List<Flats>? flats,
     ConstructionProgress? constructionProgress,
     String? description,
+    double? minFlatPrice,
+    DateTime? updateDate,
   }) {
     return House(
       description: description ?? this.description,
@@ -72,6 +81,8 @@ class House {
       address: address ?? this.address,
       flats: flats ?? this.flats,
       constructionProgress: constructionProgress ?? this.constructionProgress,
+      minFlatPrice: minFlatPrice ?? this.minFlatPrice,
+      updateDate: updateDate ?? this.updateDate,
     );
   }
 

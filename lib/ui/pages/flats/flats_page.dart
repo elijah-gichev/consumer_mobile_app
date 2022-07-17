@@ -1,23 +1,33 @@
-import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
+import 'package:bavito_mobile_app/data/repository/repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
-import 'package:bavito_mobile_app/ui/models/offer.dart';
 import 'package:bavito_mobile_app/ui/pages/details_page/details_page.dart';
+import 'package:bavito_mobile_app/ui/pages/flats/cubit/flats_cubit.dart';
 import 'package:bavito_mobile_app/ui/widgets/offers_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../data/repository/flats_repository.dart';
-import '../../models/flats.dart';
-
-class FlatsPage extends StatefulWidget {
+class FlatsPage extends StatelessWidget {
   const FlatsPage({Key? key}) : super(key: key);
 
   @override
-  State<FlatsPage> createState() => _OffersPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => FlatsCubit(getIt<Repository>())..loadFlats(),
+      child: const FlatsPageView(),
+    );
+  }
 }
 
-class _OffersPageState extends State<FlatsPage> {
+class FlatsPageView extends StatefulWidget {
+  const FlatsPageView({Key? key}) : super(key: key);
+
+  @override
+  State<FlatsPageView> createState() => _FlatsPageViewState();
+}
+
+class _FlatsPageViewState extends State<FlatsPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +57,9 @@ class _OffersPageState extends State<FlatsPage> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       context: context,
-                      builder: (_) => const DetailsPage(),
+                      builder: (_) => DetailsPage(onDetailsReady: (details) {
+                        context.read<FlatsCubit>().loadFilteredFlats(details);
+                      }),
                     );
                   },
                   label: const Text(
@@ -75,32 +87,32 @@ class _OffersPageState extends State<FlatsPage> {
                 ),
               ],
             ),
-            FutureBuilder<List<Flats>>(
-              future: getIt<FlatsRepository>().getFlats(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
+            BlocBuilder<FlatsCubit, FlatsState>(
+              builder: (context, state) {
+                if (state is FlatsLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
 
-                if (snapshot.hasError) {
+                if (state is FlatsLoadingFailure) {
                   return const Center(
                     child: Text(
                       'Что-то пошло не так!',
                     ),
                   );
-                } else if (snapshot.hasData) {
+                }
+
+                if (state is FlatsLoadingDone) {
                   return Expanded(
                     child: OffersList(
-                      offers: snapshot.data!,
+                      offers: state.flats,
                     ),
                   );
                 }
-
-                return const SizedBox();
+                return Container();
               },
-            ),
+            )
           ],
         ),
       ),

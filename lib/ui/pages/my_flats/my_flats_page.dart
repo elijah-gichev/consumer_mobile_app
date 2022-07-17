@@ -1,6 +1,8 @@
 import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/data/repository/flats_repository.dart';
+import 'package:bavito_mobile_app/data/repository/repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
+import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/models/flats.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:bavito_mobile_app/ui/pages/my_flats/my_flats_list.dart';
@@ -32,10 +34,8 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: const Text(
+      appBar: const CustomAppBar(
+        title: Text(
           "Мои объекты",
           style: TextStyle(
             color: Colors.black,
@@ -44,9 +44,9 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
       ),
       body: widget.isFlatsExist
           ? Padding(
-            padding: const EdgeInsets.all(13.0),
-            child: FutureBuilder<List<Flats>>(
-                future: getIt<FlatsRepository>().getFlats(),
+              padding: const EdgeInsets.all(13.0),
+              child: FutureBuilder<List<Flats>>(
+                future: getIt<Repository>().getFlats(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -65,7 +65,7 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
                   );
                 },
               ),
-          )
+            )
           : Container(
               child: const Center(
                 child: Text(

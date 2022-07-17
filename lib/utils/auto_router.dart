@@ -10,6 +10,7 @@ import 'package:bavito_mobile_app/ui/pages/company_page/company_page.dart';
 import 'package:bavito_mobile_app/ui/pages/construction_progress/construction_progress_page.dart';
 import 'package:bavito_mobile_app/ui/pages/delcaration_page/declaration_page.dart';
 import 'package:bavito_mobile_app/ui/pages/flats/flats_page.dart';
+import 'package:bavito_mobile_app/ui/pages/dash_chat_page/dash_chat_page.dart';
 import 'package:bavito_mobile_app/ui/pages/home_page/home_page.dart';
 import 'package:bavito_mobile_app/ui/pages/house_page/house_page.dart';
 import 'package:bavito_mobile_app/ui/pages/my_flats/my_flats_page.dart';
@@ -33,8 +34,8 @@ import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.da
           page: ClientPage,
         ),
         AutoRoute(
-          path: 'offersPage',
-          page: OffersPage,
+          path: 'dashChatPage',
+          page: DashChatPage,
         ),
         AutoRoute(
           path: 'myFlatsPage',
@@ -75,6 +76,11 @@ import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.da
       path: 'model3DPage',
       page: Model3DPage,
     ),
+
+    // AutoRoute(
+    //       path: 'offersPage',
+    //       page: OffersPage,
+    //     ),
   ],
 )
 class $AppRouter {}

@@ -20,7 +20,7 @@ class Model3DPage extends StatelessWidget {
       ),
       body: ModelViewer(
         src: 'assets/images/model.glb',
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.grey[200]!,
       ),
     );
   }
