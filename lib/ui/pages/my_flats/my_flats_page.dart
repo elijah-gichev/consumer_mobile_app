@@ -2,6 +2,7 @@ import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/data/repository/flats_repository.dart';
 import 'package:bavito_mobile_app/data/repository/repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
+import 'package:bavito_mobile_app/ui/common/custom_app_bar.dart';
 import 'package:bavito_mobile_app/ui/models/flats.dart';
 import 'package:bavito_mobile_app/ui/models/request.dart';
 import 'package:bavito_mobile_app/ui/pages/my_flats/my_flats_list.dart';
@@ -33,10 +34,8 @@ class _MyFlatsPageState extends State<MyFlatsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: const Text(
+      appBar: const CustomAppBar(
+        title: Text(
           "Мои объекты",
           style: TextStyle(
             color: Colors.black,

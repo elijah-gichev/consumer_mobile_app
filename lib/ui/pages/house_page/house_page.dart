@@ -99,7 +99,7 @@ class HousePage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  padding: EdgeInsets.only(left: 10, right: 10, top: 20.h),
                   child: Row(
                     children: const [
                       Text(
@@ -115,7 +115,7 @@ class HousePage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 10.h),
+                  padding: EdgeInsets.only(top: 20.h),
                   height: 170.h,
                   child: const FeaturesList(),
                 ),

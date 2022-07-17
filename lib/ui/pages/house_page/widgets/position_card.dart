@@ -16,7 +16,7 @@ class PositionCard extends StatelessWidget {
         children: [
           const Text(
             'Местоположение',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 20.h,

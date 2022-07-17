@@ -79,7 +79,6 @@ class _DashChatPageState extends State<DashChatPage> {
         title: Text(
           'Чат-бот',
           style: TextStyle(
-            fontSize: 15,
             fontWeight: FontWeight.w400,
           ),
         ),
