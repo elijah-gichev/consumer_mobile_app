@@ -1,9 +1,9 @@
-import 'package:bavito_mobile_app/ui/models/offer.dart';
+import 'package:bavito_mobile_app/ui/models/house.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OfferItem extends StatelessWidget {
-  final Offer offer;
+  final House offer;
   final VoidCallback onTap;
 
   const OfferItem({
@@ -11,6 +11,13 @@ class OfferItem extends StatelessWidget {
     required this.offer,
     required this.onTap,
   }) : super(key: key);
+
+  String imagePath(int index) {
+    final num = (index) % 4;
+    final path = "assets/images/house$num.jpg";
+    print(path);
+    return path;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,7 @@ class OfferItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12.0.r),
                   color: Colors.grey[200],
                   image: DecorationImage(
-                    image: Image.asset(offer.image).image,
+                    image: Image.asset(imagePath(offer.id)).image,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -48,7 +55,7 @@ class OfferItem extends StatelessWidget {
             ),
             const SizedBox(height: 2),
             Text(
-              'от ' + offer.price.toStringAsFixed(2) + 'млн. ₽',
+              'от ' + offer.minFlatPrice.toStringAsFixed(2) + 'млн. ₽',
               style: const TextStyle(
                 fontSize: 13,
                 color: Colors.grey,

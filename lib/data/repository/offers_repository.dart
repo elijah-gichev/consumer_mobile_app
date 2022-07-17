@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:bavito_mobile_app/ui/models/offer.dart';
+import 'package:bavito_mobile_app/ui/models/house.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,8 +38,8 @@ class OffersRepository {
   //     image: 'assets/images/house5.jpg',
   //   ),
   // ];
-  
-  Future<List<Offer>> getOffers() async {
+
+  Future<List<House>> getHouses() async {
     // try {
     final Response request = await dio.get(
       dom + '/api/complex',
@@ -50,12 +50,11 @@ class OffersRepository {
       ),
     );
     final data = jsonDecode(request.toString());
-    final res = data["data"].map<Offer>(
-      (e) => Offer.fromMap(e),
-    ).toList();
-    return res ;
-    // } catch (e) {
-    // print(e.toString());
-    // }
+    final res = data["data"]
+        .map<House>(
+          (e) => House.fromMap(e),
+        )
+        .toList();
+    return res;
   }
 }

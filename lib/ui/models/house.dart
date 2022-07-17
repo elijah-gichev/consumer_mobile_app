@@ -6,23 +6,26 @@ import 'package:bavito_mobile_app/ui/models/flats.dart';
 
 class House {
   final String address;
-  final String name;
-  final String description;
+  final String title;
+
   final List<Flats> flats;
 
   final double minFlatPrice;
 
   final DateTime updateDate;
 
+  final int id;
+
   final ConstructionProgress constructionProgress;
+
   House({
-    required this.description,
-    required this.name,
     required this.address,
+    required this.title,
     required this.flats,
-    required this.constructionProgress,
     required this.minFlatPrice,
     required this.updateDate,
+    required this.constructionProgress,
+    required this.id,
   });
 
   static final List<Flats> _offers = [
@@ -57,47 +60,79 @@ class House {
 
   factory House.blank() {
     return House(
-        description: 'Новый дом на западе Краснодара',
-        name: 'Открытый парк',
-        address: 'ул. Ветеранов, Краснодар, Краснодарский край',
-        flats: _offers,
-        constructionProgress: ConstructionProgress.blank(),
-        minFlatPrice: 5.8,
-        updateDate: DateTime.now());
+      title: 'Открытый парк',
+      address: 'ул. Ветеранов, Краснодар, Краснодарский край',
+      flats: _offers,
+      constructionProgress: ConstructionProgress.blank(),
+      minFlatPrice: 5.8,
+      updateDate: DateTime.now(),
+      id: 1,
+    );
   }
 
-  House copyWith({
-    String? address,
-    String? name,
-    List<Flats>? flats,
-    ConstructionProgress? constructionProgress,
-    String? description,
-    double? minFlatPrice,
-    DateTime? updateDate,
-  }) {
+  House copyWith(
+      {String? address, String? title, List<Flats>? flats, double? minFlatPrice, DateTime? updateDate, ConstructionProgress? constructionProgress, int? id}) {
     return House(
-      description: description ?? this.description,
-      name: name ?? this.name,
       address: address ?? this.address,
+      title: title ?? this.title,
       flats: flats ?? this.flats,
-      constructionProgress: constructionProgress ?? this.constructionProgress,
       minFlatPrice: minFlatPrice ?? this.minFlatPrice,
       updateDate: updateDate ?? this.updateDate,
+      constructionProgress: constructionProgress ?? this.constructionProgress,
+      id: id ?? this.id,
     );
   }
 
   @override
-  String toString() => 'House(address: $address, flats: $flats, constructionProgress: $constructionProgress)';
+  String toString() {
+    return 'House(address: $address, title: $title, flats: $flats, minFlatPrice: $minFlatPrice, updateDate: $updateDate, constructionProgress: $constructionProgress)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is House && other.address == address && listEquals(other.flats, flats) && other.constructionProgress == constructionProgress;
+    return other is House &&
+        other.address == address &&
+        other.title == title &&
+        listEquals(other.flats, flats) &&
+        other.minFlatPrice == minFlatPrice &&
+        other.updateDate == updateDate &&
+        other.constructionProgress == constructionProgress;
   }
 
   @override
-  int get hashCode => address.hashCode ^ flats.hashCode ^ constructionProgress.hashCode;
+  int get hashCode {
+    return address.hashCode ^ title.hashCode ^ flats.hashCode ^ minFlatPrice.hashCode ^ updateDate.hashCode ^ constructionProgress.hashCode;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'address': address,
+      'title': title,
+      'flats': flats.map((x) => x.toMap()).toList(),
+      'min_flat_price': minFlatPrice,
+      'updated_at': updateDate.millisecondsSinceEpoch,
+      'id': id,
+      //'constructionProgress': constructionProgress.toMap(),
+    };
+  }
+
+  factory House.fromMap(Map<String, dynamic> map) {
+    return House(
+      address: map['address'] ?? '',
+      title: map['title'] ?? '',
+      flats: List<Flats>.from(map['flats']?.map((x) => Flats.fromMap(x))),
+      minFlatPrice: (map['min_cost'] ?? 0.0) / 1000000,
+      updateDate: DateTime.fromMillisecondsSinceEpoch(map['updated_at'] * 1000),
+      constructionProgress: ConstructionProgress.blank(),
+      id: map['id'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory House.fromJson(String source) => House.fromMap(json.decode(source));
 }
 
 class ConstructionProgress {

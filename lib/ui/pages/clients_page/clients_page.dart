@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bavito_mobile_app/data/repository/offers_repository.dart';
+import 'package:bavito_mobile_app/data/repository/repository.dart';
 import 'package:bavito_mobile_app/di/locator.dart';
 import 'package:bavito_mobile_app/data/entity/client.dart';
 import 'package:bavito_mobile_app/ui/models/house.dart';
@@ -114,8 +115,8 @@ class Offers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Offer>>(
-      future: getIt<OffersRepository>().getOffers(),
+    return FutureBuilder<List<House>>(
+      future: getIt<Repository>().getHouses(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -144,7 +145,7 @@ class Offers extends StatelessWidget {
                 return OfferItem(
                   offer: offer,
                   onTap: () {
-                    context.router.push(HousePageRoute(house: House.blank()));
+                    context.router.push(HousePageRoute(house: offer));
                   },
                 );
               },

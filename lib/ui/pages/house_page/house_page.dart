@@ -61,7 +61,7 @@ class HousePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          house.description,
+                          house.title,
                           style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class HousePage extends StatelessWidget {
                         HouseTile(
                           leadingIcon: Icons.house,
                           title: 'Квартиры',
-                          subtitle: 'от ${house.minFlatPrice} млн. Р',
+                          subtitle: 'от ${house.minFlatPrice.toStringAsFixed(2)} млн. Р',
                           onTap: () {
                             context.router.push(const FlatsPageRoute());
                           },

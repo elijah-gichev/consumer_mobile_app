@@ -38,7 +38,7 @@ class PositionCard extends StatelessWidget {
           ListTile(
             contentPadding: const EdgeInsets.all(0),
             title: Text(
-              house.name,
+              house.title,
               style: const TextStyle(
                 fontSize: 13,
                 color: Colors.grey,

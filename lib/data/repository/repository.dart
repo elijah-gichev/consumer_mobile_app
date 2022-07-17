@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bavito_mobile_app/ui/models/house.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -41,8 +42,8 @@ class Repository {
 
   Future<List<Flats>> getFilteredFlats(Details details) async {
     final repair = details.isRenovated ? 'С ремонтом' : 'Без ремонта';
-    final costFrom = details.costMin.round(); // TODO почему-то принимает только целые
-    final costTo = details.costMax.round();
+    final costFrom = (details.costMin * 1000000).round();
+    final costTo = (details.costMax * 1000000).round();
     final roomCount = details.layout.index;
     final heightFrom = details.ceilingHeightMin;
     final floorCountFrom = details.floorMin;
@@ -82,6 +83,25 @@ class Repository {
     final res = data["data"]
         .map<Flats>(
           (e) => Flats.fromMap(e),
+        )
+        .toList();
+    return res;
+  }
+
+  Future<List<House>> getHouses() async {
+    // try {
+    final Response request = await dio.get(
+      dom + '/api/complex',
+      options: Options(
+        headers: {
+          "token": token,
+        },
+      ),
+    );
+    final data = jsonDecode(request.toString());
+    final res = data["data"]
+        .map<House>(
+          (e) => House.fromMap(e),
         )
         .toList();
     return res;

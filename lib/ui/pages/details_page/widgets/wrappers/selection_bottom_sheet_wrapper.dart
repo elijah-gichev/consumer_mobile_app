@@ -81,7 +81,7 @@ class _SelectionBottomSheetWrapper extends State<SelectionBottomSheetWrapper> {
                   controller: textEditingControllerFrom,
                   decoration: InputDecoration(
                     labelText: 'от',
-                    suffixText: widget.suffixText,
+                    suffixText: 'млн. ' + widget.suffixText,
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
                     ),
@@ -98,7 +98,7 @@ class _SelectionBottomSheetWrapper extends State<SelectionBottomSheetWrapper> {
                   controller: textEditingControllerTo,
                   decoration: InputDecoration(
                     labelText: 'до',
-                    suffixText: widget.suffixText,
+                    suffixText: 'млн. ' + widget.suffixText,
                     border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
                     ),

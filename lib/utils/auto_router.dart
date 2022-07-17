@@ -14,7 +14,6 @@ import 'package:bavito_mobile_app/ui/pages/dash_chat_page/dash_chat_page.dart';
 import 'package:bavito_mobile_app/ui/pages/home_page/home_page.dart';
 import 'package:bavito_mobile_app/ui/pages/house_page/house_page.dart';
 import 'package:bavito_mobile_app/ui/pages/my_flats/my_flats_page.dart';
-import 'package:bavito_mobile_app/ui/pages/offers_page/offers_page.dart';
 import 'package:bavito_mobile_app/ui/pages/smart_district/smart_district_page.dart';
 
 @MaterialAutoRouter(
