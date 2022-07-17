@@ -21,17 +21,20 @@ class CompanyPage extends StatelessWidget {
         ),
         showback: true,
       ),
-      body: Column(
-        children: [
-          ...services.map(
-            (s) {
-              return ListTileCompany(
-                service: s,
-                onTap: () {},
-              );
-            },
-          ).toList()
-        ],
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            ...services.map(
+              (s) {
+                return ListTileCompany(
+                  service: s,
+                  onTap: () {},
+                );
+              },
+            ).toList()
+          ],
+        ),
       ),
     );
   }
